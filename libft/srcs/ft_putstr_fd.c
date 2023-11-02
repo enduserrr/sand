@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:58:22 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/31 12:39:41 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:26:09 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 

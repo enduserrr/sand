@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:38:32 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/27 15:39:06 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:43:45 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-    void	*array;
+	void	*array;
 
 	array = (void *)malloc(count * size);
 	if (array == 0)

@@ -6,16 +6,16 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:49:51 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/01 15:50:59 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:13:41 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlen (const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (s[i] != '\0')
 		i++;

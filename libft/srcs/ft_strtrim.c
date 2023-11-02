@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:50:07 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/30 16:37:52 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:03:53 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int	ft_check_set(char const c, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*new;
-    size_t	size;
-	
+	size_t	size;
+
 	if (!s1 || !set)
 		return (0);
 	while (s1)

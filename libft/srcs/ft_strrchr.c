@@ -6,18 +6,18 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:24:37 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/30 16:37:46 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:05:25 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (s[i])
+	i = 0;
+	while (s[i])
 		i++;
 	while (i >= 0)
 	{

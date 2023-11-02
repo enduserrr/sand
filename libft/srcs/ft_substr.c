@@ -3,35 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:06 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/30 11:32:29 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 20:53:34 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*sub;
+	char	*substr;
+	size_t	fullsize;
+	size_t	endpoint;
 
-	sub = (char*)malloc(sizeof(*s) * (len + 1));
-	if (!sub)
-		return (0);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			sub[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	sub[j] = 0;
-	return (sub);
+	if (!s)
+		return (NULL);
+	fullsize = ft_strlen(s);
+	endpoint = 0;
+	if (start < fullsize)
+		endpoint = fullsize - start;
+	if (endpoint > len)
+		endpoint = len;
+	substr = (char *)malloc(sizeof(char) * (endpoint + 1));
+	if (!substr)
+		return (NULL);
+	ft_strlcpy(substr, s + start, endpoint + 1);
+	return (substr);
 }

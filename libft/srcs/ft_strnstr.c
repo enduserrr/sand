@@ -6,15 +6,15 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:23:36 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/30 16:37:35 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:06:34 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strnstr(const char *main_s, const char *sub_s, size_t len)
+char	*ft_strnstr(const char *main_s, const char *sub_s, size_t len)
 {
-    size_t	i;
+	size_t	i;
 	size_t	j;
 
 	i = 0;
