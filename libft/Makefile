@@ -6,7 +6,7 @@
 #    By: asalo <asalo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:37:45 by asalo             #+#    #+#              #
-#    Updated: 2023/11/04 17:51:19 by asalo            ###   ########.fr        #
+#    Updated: 2023/11/04 18:57:28 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,14 @@ SRCS   		= ft_isprint.c ft_putendl_fd.c ft_strlcat.c ft_substr.c \
 			ft_striteri.c ft_strrchr.c ft_isdigit.c ft_putchar_fd.c \
 			ft_strjoin.c ft_strtrim.c
 
-BONUS  		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+OBJS		= $(SRCS:.c=.o)
+
+SRCSB  		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
        		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
        		ft_lstmap.c
 
-OBJS		= $(SRCS:.c=.o)
-BONUS_OBJS	= $(BONUS:.c=.o)
+OBJSB		= $(SRCSB:.c=.o)
+
 NAME		= libft.a
 AR			= ar rc
 CC			= cc
@@ -40,15 +42,15 @@ ${NAME}: 	${OBJS}
 
 all:		${NAME}
 
+bonus:		$(NAME) $(OBJSB)
+					$(AR) $(NAME) $(OBJSB)
+					
 clean:
-			${RM} ${OBJS} ${BONUS_OBJS}
+			${RM} ${OBJS} ${OBJSB}
 
 fclean: 	clean
-					${RM} ${NAME} ${BONUS_OBJS} 
+					${RM} ${NAME} ${OBJSB} 
 
 re: 		fclean all
 
-bonus:		$(OBJS) $(BONUS_OBJS)
-					$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
-
-.PHONY:		all bonus clean fclean re
+.PHONY  :		all bonus clean fclean re
