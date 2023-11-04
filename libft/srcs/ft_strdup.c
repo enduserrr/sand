@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:05:54 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/02 20:53:40 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/03 16:39:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s1)
 	cpy = (char *)malloc(sizeof(char) * (i + 1));
 	if (cpy == NULL)
 		return (NULL);
-	ft_memmove(cpy, s1, i);
+	ft_memcpy(cpy, s1, i);
 	cpy[i] = '\0';
 	return (cpy);
 }
