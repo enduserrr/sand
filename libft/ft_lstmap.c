@@ -6,15 +6,15 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:05:26 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/04 14:23:04 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/06 16:26:11 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-    t_list	*new;
+	t_list	*new;
 	t_list	*node;
 
 	if (!f || !lst)

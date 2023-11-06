@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:25:18 by asalo             #+#    #+#             */
-/*   Updated: 2023/10/30 16:48:11 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/06 16:56:36 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,27 @@
 
 int	ft_atoi(char *str)
 {
-	int	result;
-	int	sign;
+	int					i;
+	int					sign;
+	unsigned long int	result;
 
+	i = 0;
 	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
-	while (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
 	result = 0;
-	while (*str >= 48 && *str <= 57)
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
 	{
-		result = result * 10 + *str - 48;
-		str++;
+		sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		result *= 10;
+		result += str[i] - '0';
+		i++;
 	}
 	return (result * sign);
 }
