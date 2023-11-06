@@ -1,3 +1,7 @@
-LIBFT
+Libft
 
-In this project the goal was to code a C library including a selection of basic functions that are allowed to be used with other C projects in the future during the 42 C studies.
+The aim of this project was to code a C library regrouping basic functions that are allowed to be used in future projects during my 42 C studies.
+
+make without bonus functions.
+
+make bonus to compile with bonuses.
