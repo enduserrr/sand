@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:06 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/07 13:43:03 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/07 20:03:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	size_t	fullsize;
-	size_t	endpoint;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	fullsize = ft_strlen(s);
-	endpoint = 0;
-	if (start < fullsize)
-		endpoint = fullsize - start;
-	if (endpoint > len)
-		endpoint = len;
-	substr = (char *)malloc(sizeof(char) * (endpoint + 1));
-	if (!substr)
+	str = (char*)malloc(sizeof(char) * len);
+	if (str == NULL)
 		return (NULL);
-	ft_strlcpy(substr, s + start, endpoint + 1);
-	return (substr);
+	i = start;
+	j = 1;
+	while (i < ft_strlen(s) && j < len)
+	{
+		str[j] = s[i];
+		j++;
+		i++;
+	}
+	str[j] = 0;
+	return (str);
 }
