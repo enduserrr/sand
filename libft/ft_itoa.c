@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:47:19 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/02 15:18:50 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/07 10:53:59 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_itoa(int n)
 
 	sign = 1;
 	len = ft_len(n);
-	s = (char *)malloc(sizeof(char) * (len + 1));
+	s = malloc(sizeof(char) * (len + 1));
 	if (!(s))
 		return (0);
 	s[len--] = '\0';
