@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:03:05 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/03 16:37:34 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/09 14:10:58 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	d2 = (unsigned char *)dst;
 	s2 = (unsigned char *)src;
 	if (!dst && !src)
-		return (NULL);
+		return (0);
 	if (src < dst)
 	{
 		s2 = s2 + len - 1;

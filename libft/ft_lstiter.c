@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:03:52 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/06 16:26:45 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/09 14:09:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!f)
 		return ;
-	while (lst != NULL)
+	while (lst != 0)
 	{
 		(*f)(lst->content);
 		lst = lst->next;

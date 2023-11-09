@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:58:25 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/07 10:53:01 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/09 14:10:36 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_list	*ft_lstnew(void *content)
 
 	new_node = malloc(sizeof(t_list));
 	if (!new_node)
-		return (NULL);
+		return (0);
 	new_node->content = content;
-	new_node->next = NULL;
+	new_node->next = 0;
 	return (new_node);
 }
 /*int main()

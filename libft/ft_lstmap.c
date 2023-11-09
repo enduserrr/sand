@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:05:26 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/06 16:26:11 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/09 14:10:25 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*node;
 
 	if (!f || !lst)
-		return (NULL);
-	new = NULL;
-	while (lst != NULL)
+		return (0);
+	new = 0;
+	while (lst != 0)
 	{
 		node = ft_lstnew(f(lst->content));
 		if (!node)
 		{
 			ft_lstclear(&node, (*del));
-			return (NULL);
+			return (0);
 		}
 		ft_lstadd_back(&new, node);
 		lst = lst->next;
