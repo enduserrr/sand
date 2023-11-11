@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 19:46:41 by asalo             #+#    #+#             */
-/*   Updated: 2023/08/29 19:49:39 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/11 13:13:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	strs_l(char *str, char *charset)
 	return (count);
 }
 
-char	*ft_strdup(char *src, char *charset)
+char	*ft_dupword(char *src, char *charset)
 {
 	char	*dest;
 	char	*buffer;
@@ -75,7 +75,7 @@ char	**ft_split(char *str, char *charset)
 		if (!has_char(*str, charset) && part)
 		{
 			part = 0;
-			*tmp = ft_strdup(str, charset);
+			*tmp = ft_dupword(str, charset);
 			tmp++;
 		}
 		else if (has_char(*str, charset))
