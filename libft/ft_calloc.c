@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:38:32 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/09 14:07:51 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/15 14:15:41 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*array;
 
-	array = (void *)malloc(count * size);
-	if (array == 0)
-		return (0);
-	ft_bzero(array, (count * size));
+	array = malloc(count * size);
+	if (array == NULL)
+		return (NULL);
+	ft_bzero(array, count * size);
 	return (array);
 }

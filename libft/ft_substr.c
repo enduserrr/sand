@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:06 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/11 12:40:18 by asalo            ###   ########.fr       */
+/*   Updated: 2023/11/15 14:16:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size = ft_strlen(s + start);
 	if (size < len)
 		len = size;
-	sub = (char *)malloc((len + 1) * sizeof(char));
+	sub = ft_calloc(len + 1, sizeof(char));
 	if (!sub)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (i < len)
 	{
