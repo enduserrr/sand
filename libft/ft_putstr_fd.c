@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:58:22 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/02 15:26:09 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/05 11:49:43 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,3 @@ void	ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
-
-/*int main () 
-{
-    char letter[20] = "Life if good.";
-    ft_putstr_fd(letter, 1);
-    return(0);
-}*/

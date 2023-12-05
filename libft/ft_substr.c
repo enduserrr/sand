@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:06 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/15 14:16:08 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/05 11:50:30 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		sub[i] = s[start + i];
 		i++;
 	}
-	sub[i] = '\0';
+	sub[i] = 0;
 	return (sub);
 }

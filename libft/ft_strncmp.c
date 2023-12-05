@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:54:26 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/02 15:09:46 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/05 11:50:16 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	else
 		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-/*#include <stdio.h>
-
-int	main(void)
-
-{
-	char	s1[] = "A";
-	char	s2[] = "a";
-
-	printf("%d\n", ft_strncmp(s1, s2, 2));
-}
-*/

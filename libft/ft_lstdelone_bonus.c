@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 19:33:45 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/05 11:50:37 by asalo            ###   ########.fr       */
+/*   Created: 2023/11/04 13:31:18 by asalo             #+#    #+#             */
+/*   Updated: 2023/12/05 11:49:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
+
 {
-	if (c > 96 && c < 123)
-		c -= 32;
-	return (c);
+	if (!del)
+		return ;
+	if (lst)
+		(*del)(lst->content);
+	free(lst);
 }

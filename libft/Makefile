@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asalo <asalo@student.42.fr>                +#+  +:+       +#+         #
+#    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:37:45 by asalo             #+#    #+#              #
-#    Updated: 2023/11/04 19:10:21 by asalo            ###   ########.fr        #
+#    Updated: 2023/12/05 11:50:44 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,10 @@ SRCS   		= ft_isprint.c ft_putendl_fd.c ft_strlcat.c ft_substr.c \
 
 OBJS		= $(SRCS:.c=.o)
 
-SRCSB  		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-       		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-       		ft_lstmap.c
+SRCSB  		= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
+       		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
 
-OBJSB		= $(SRCSB:.c=.o)
+BOBJS		= $(SRCSB:.c=.o)
 
 NAME		= libft.a
 AR			= ar rc
@@ -42,15 +41,18 @@ ${NAME}: 	${OBJS}
 
 all:		${NAME}
 
-bonus:		$(NAME) $(OBJSB)
-					$(AR) $(NAME) $(OBJSB)
-					
 clean:
-			${RM} ${OBJS} ${OBJSB}
+			${RM} ${OBJS} ${BOBJS}
 
 fclean: 	clean
-					${RM} ${NAME} ${OBJSB} 
+					${RM} ${NAME} ${BOBJS} .bonus
 
-re: 		fclean all
+re: 		fclean all 
 
-.PHONY  :		all bonus clean fclean re
+bonus:		.bonus
+
+.bonus:		$(NAME) $(BOBJS)
+					$(AR) $(NAME) $(BOBJS)
+					touch	.bonus
+
+.PHONY:		all bonus clean fclean re

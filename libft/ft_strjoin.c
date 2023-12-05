@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:02:15 by asalo             #+#    #+#             */
-/*   Updated: 2023/11/09 14:12:21 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/05 11:49:58 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new[i] = 0;
 	return (new);
 }
-/*
-int main(void)
-{
-    char    *prnt;
-
-    prnt = ft_strjoin("abcd", "efgh");
-    printf("%s\n", prnt);
-    free (prnt);
-}*/
