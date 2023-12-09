@@ -6,112 +6,115 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:59 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/08 13:51:41 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/09 15:21:30 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	found_newline(t_list *list)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
-	if (NULL == list)
-		return (0);
-	while (list)
-	{
-		i = 0;
-		while (list->str_buf[i] && i < BUFFER_SIZE)
-		{
-			if (list->str_buf[i] == '\n')
-				return (1);
-			++i;
-		}
-		list = list->next;
-	}
-	return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
-t_list	*find_last_node(t_list *list)
+char	*ft_strdup(const char *s1)
 {
-	if (NULL == list)
+	char	*dub;
+	size_t	i;
+
+	dub = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!dub)
 		return (NULL);
-	while (list->next)
-		list = list->next;
-	return (list);
-}
-
-void	copy_str(t_list *list, char *str)
-{
-	int	i;
-	int	k;
-
-	if (NULL == list)
-		return ;
-	k = 0;
-	while (list)
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		i = 0;
-		while (list->str_buf[i])
-		{
-			if (list->str_buf[i] == '\n')
-			{
-				str[k++] = '\n';
-				str[k] = '\0';
-				return ;
-			}
-			str[k++] = list->str_buf[i++];
-		}
-		list = list->next;
+		dub[i] = s1[i];
+		i++;
 	}
-	str[k] = '\0';
+	dub[i] = '\0';
+	return (dub);
 }
 
-int	len_to_newline(t_list *list)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	len;
+	char	*new;
+	size_t	i;
+	size_t	j;
 
-	if (NULL == list)
+	if (!s1 || !s2)
+		return (NULL);
+	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		new[i] = s2[j];
+		i++;
+		j++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	size;
+	char	*sub;
+
+	if (!s)
 		return (0);
-	len = 0;
-	while (list)
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup(""));
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
+	sub = malloc(sizeof(char) * (len + 1));
+	if (!sub)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		i = 0;
-		while (list->str_buf[i])
-		{
-			if (list->str_buf[i] == '\n')
-			{
-				++len;
-				return (len);
-			}
-			++i;
-			++len;
-		}
-		list = list->next;
-	}	
-	return (len);
+		sub[i] = s[start + i];
+		i++;
+	}
+	sub[i] = 0;
+	return (sub);
 }
 
-void	dealloc(t_list **list, t_list *clean_node, char *buf)
+void	*free_stash(char **stash, int create_line)
 {
-	t_list	*tmp;
+	char	*line;
 
-	if (NULL == *list)
-		return ;
-	while (*list)
+	if (!*stash)
+		return (NULL);
+	if (create_line == 0)
 	{
-		tmp = (*list)->next;
-		free((*list)->str_buf);
-		free(*list);
-		*list = tmp;
+		if (*stash)
+		{
+			free(*stash);
+			*stash = NULL;
+		}
+		return (NULL);
 	}
-	*list = NULL;
-	if (clean_node->str_buf[0])
-		*list = clean_node;
-	else
+	else if (create_line == 1)
 	{
-		free(buf);
-		free(clean_node);
+		line = ft_strdup(*stash);
+		free(*stash);
+		*stash = NULL;
+		return (line);
 	}
+	return (NULL);
 }

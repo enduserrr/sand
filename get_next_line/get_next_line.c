@@ -6,101 +6,121 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:51:13 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/08 13:49:16 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/09 16:35:03 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	polish_list(t_list **list)
+static char	*cpy_to_stash(char *stash, char *buf)
 {
-	t_list	*last_node;
-	t_list	*clean_node;
-	int		i;
-	int		k;
-	char	*buf;
+	char	*temp;
+	char	*res;
 
-	buf = malloc(BUFFER_SIZE + 1);
-	clean_node = malloc(sizeof(t_list));
-	if (NULL == buf || NULL == clean_node)
-		return ;
-	last_node = find_last_node(*list);
-	i = 0;
-	k = 0;
-	while (last_node->str_buf[i] && last_node->str_buf[i] != '\n')
-		++i;
-	while (last_node->str_buf[i] && last_node->str_buf[++i])
-		buf[k++] = last_node->str_buf[i];
-	buf[k] = '\0';
-	clean_node->str_buf = buf;
-	clean_node->next = NULL;
-	dealloc(list, clean_node, buf);
-}
-
-char	*take_line(t_list *list)
-{
-	int		str_len;
-	char	*next_str;
-
-	if (NULL == list)
-		return (NULL);
-	str_len = len_to_newline(list);
-	next_str = malloc(str_len + 1);
-	if (NULL == next_str)
-		return (NULL);
-	copy_str(list, next_str);
-	return (next_str);
-}
-
-void	append(t_list **list, char *buf)
-{
-	t_list	*new_node;
-	t_list	*last_node;
-
-	last_node = find_last_node(*list);
-	new_node = malloc(sizeof(t_list));
-	if (NULL == new_node)
-		return ;
-	if (NULL == last_node)
-		*list = new_node;
-	else
-		last_node->next = new_node;
-	new_node->str_buf = buf;
-	new_node->next = NULL;
-}
-
-void	create_list(t_list **list, int fd)
-{
-	int		char_read;	
-	char	*buf;
-
-	while (!found_newline(*list))
+	res = 0;
+	if (!stash && buf)
 	{
-		buf = malloc(BUFFER_SIZE + 1);
-		if (NULL == buf)
-			return ;
-		char_read = read(fd, buf, BUFFER_SIZE);
-		if (!char_read)
-		{
-			free(buf);
-			return ;
-		}
-		buf[char_read] = '\0';
-		append(list, buf);
+		res = ft_strdup(buf);
+		if (!res)
+			return (free_stash(&res, 0));
+		return (res);
 	}
+	temp = ft_strdup(stash);
+	if (!temp)
+	{
+		free_stash(&stash, 0);
+		return (free_stash(&temp, 0));
+	}
+	free_stash(&stash, 0);
+	res = ft_strjoin(temp, buf);
+	if (!res)
+		free_stash(&res, 0);
+	free_stash(&temp, 0);
+	return (res);
+}
+
+static int	check_nl(char *s)
+{
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static char	*extract(char *stash)
+{
+	char	*line;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (!stash)
+		return (free_stash(&stash, 0));
+	while (stash[i] != '\n')
+		i++;
+	line = malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (free_stash(&line, 0));
+	j = 0;
+	while (j < i + 1)
+	{
+		line[j] = stash[j];
+		j++;
+	}
+	line[j] = '\0';
+	return (line);
+}
+
+static char	*recreate(char *stash)
+{
+	size_t	i;
+	char	*res;
+
+	i = 0;
+	if (!stash)
+		return (NULL);
+	while (stash[i] != '\n')
+		i++;
+	if (stash[i + 1] == '\0')
+		return (free_stash(&stash, 0));
+	res = ft_substr(stash, i + 1, ft_strlen(stash));
+	free_stash(&stash, 0);
+	if (!res)
+		return (NULL);
+	return (res);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
-	char			*next_line;
+	char		buf[BUFFER_SIZE + 1];
+	long		ret;
+	static char	*stash = NULL;
+	static char	*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
-        return (NULL);
-	create_list(&list, fd);
-	if (list == NULL)
-		return (NULL);
-	next_line = take_line(list);
-	polish_list(&list);
-	return (next_line);
+	line = 0;
+	ret = BUFFER_SIZE;
+	while (ret > 0)
+	{
+		ret = read(fd, buf, BUFFER_SIZE);
+		if ((ret <= 0 && !stash) || ret == -1)
+			return (free_stash(&stash, 0));
+		buf[ret] = '\0';
+		stash = cpy_to_stash(stash, buf);
+		if (check_nl(stash))
+		{
+			line = extract(stash);
+			if (!line)
+				return (free_stash(&stash, 0));
+			return (stash = recreate(stash), line);
+		}
+	}
+	return (free_stash(&stash, 1));
 }
