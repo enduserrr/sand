@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:59 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/09 15:21:30 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/10 14:22:23 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,22 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-void	*free_stash(char **stash, int create_line)
+void	*free_premium(char **stash, int iffy)
 {
 	char	*line;
 
-	if (!*stash)
-		return (NULL);
-	if (create_line == 0)
+	while (*stash)
 	{
-		if (*stash)
+		if (iffy == 1)
 		{
+			line = ft_strdup(*stash);
 			free(*stash);
 			*stash = NULL;
+			return (line);
 		}
-		return (NULL);
-	}
-	else if (create_line == 1)
-	{
-		line = ft_strdup(*stash);
-		free(*stash);
-		*stash = NULL;
-		return (line);
+		else
+			free(*stash);
+			*stash = NULL;
 	}
 	return (NULL);
 }

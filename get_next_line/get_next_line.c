@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:51:13 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/09 16:35:03 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/10 14:22:11 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,20 @@ static char	*cpy_to_stash(char *stash, char *buf)
 	char	*temp;
 	char	*res;
 
-	res = 0;
+	res = NULL;
 	if (!stash && buf)
 	{
 		res = ft_strdup(buf);
-		if (!res)
-			return (free_stash(&res, 0));
-		return (res);
+		return (free_premium(&res, 1));
 	}
-	temp = ft_strdup(stash);
+	temp = free_premium(&stash, 1);
 	if (!temp)
-	{
-		free_stash(&stash, 0);
-		return (free_stash(&temp, 0));
-	}
-	free_stash(&stash, 0);
+		return (free_premium(&temp, 0));
 	res = ft_strjoin(temp, buf);
 	if (!res)
-		free_stash(&res, 0);
-	free_stash(&temp, 0);
+		free(res);
+	free(temp);
 	return (res);
-}
-
-static int	check_nl(char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 static char	*extract(char *stash)
@@ -63,12 +41,12 @@ static char	*extract(char *stash)
 
 	i = 0;
 	if (!stash)
-		return (free_stash(&stash, 0));
+		return (free_premium(&stash, 0));
 	while (stash[i] != '\n')
 		i++;
 	line = malloc(sizeof(char) * (i + 2));
 	if (!line)
-		return (free_stash(&line, 0));
+		return (free_premium(&line, 0));
 	j = 0;
 	while (j < i + 1)
 	{
@@ -90,12 +68,28 @@ static char	*recreate(char *stash)
 	while (stash[i] != '\n')
 		i++;
 	if (stash[i + 1] == '\0')
-		return (free_stash(&stash, 0));
+		return (free_premium(&stash, 0));
 	res = ft_substr(stash, i + 1, ft_strlen(stash));
-	free_stash(&stash, 0);
+	free_premium(&stash, 0);
 	if (!res)
 		return (NULL);
 	return (res);
+}
+
+static int	check_nl(char *s)
+{
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 char	*get_next_line(int fd)
@@ -111,16 +105,16 @@ char	*get_next_line(int fd)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if ((ret <= 0 && !stash) || ret == -1)
-			return (free_stash(&stash, 0));
+			return (free_premium(&stash, 0));
 		buf[ret] = '\0';
 		stash = cpy_to_stash(stash, buf);
 		if (check_nl(stash))
 		{
 			line = extract(stash);
 			if (!line)
-				return (free_stash(&stash, 0));
+				return (free_premium(&stash, 0));
 			return (stash = recreate(stash), line);
 		}
 	}
-	return (free_stash(&stash, 1));
+	return (free_premium(&stash, 1));
 }
