@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:59 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/10 14:22:23 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 16:13:58 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*ft_strdup(const char *s1)
 	char	*dub;
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	dub = malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!dub)
 		return (NULL);
@@ -94,7 +96,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-void	*free_premium(char **stash, int iffy)
+void	*super_free(char **stash, int iffy)
 {
 	char	*line;
 
@@ -109,7 +111,7 @@ void	*free_premium(char **stash, int iffy)
 		}
 		else
 			free(*stash);
-			*stash = NULL;
+		*stash = NULL;
 	}
 	return (NULL);
 }

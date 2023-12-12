@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:51:13 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/10 14:22:11 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 16:16:41 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static char	*cpy_to_stash(char *stash, char *buf)
 	if (!stash && buf)
 	{
 		res = ft_strdup(buf);
-		return (free_premium(&res, 1));
+		return (super_free(&res, 1));
 	}
-	temp = free_premium(&stash, 1);
+	temp = super_free(&stash, 1);
 	if (!temp)
-		return (free_premium(&temp, 0));
+		return (super_free(&temp, 0));
 	res = ft_strjoin(temp, buf);
 	if (!res)
 		free(res);
@@ -41,12 +41,12 @@ static char	*extract(char *stash)
 
 	i = 0;
 	if (!stash)
-		return (free_premium(&stash, 0));
+		return (super_free(&stash, 0));
 	while (stash[i] != '\n')
 		i++;
 	line = malloc(sizeof(char) * (i + 2));
 	if (!line)
-		return (free_premium(&line, 0));
+		return (super_free(&line, 0));
 	j = 0;
 	while (j < i + 1)
 	{
@@ -68,9 +68,9 @@ static char	*recreate(char *stash)
 	while (stash[i] != '\n')
 		i++;
 	if (stash[i + 1] == '\0')
-		return (free_premium(&stash, 0));
+		return (super_free(&stash, 0));
 	res = ft_substr(stash, i + 1, ft_strlen(stash));
-	free_premium(&stash, 0);
+	super_free(&stash, 0);
 	if (!res)
 		return (NULL);
 	return (res);
@@ -105,16 +105,16 @@ char	*get_next_line(int fd)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if ((ret <= 0 && !stash) || ret == -1)
-			return (free_premium(&stash, 0));
+			return (super_free(&stash, 0));
 		buf[ret] = '\0';
 		stash = cpy_to_stash(stash, buf);
 		if (check_nl(stash))
 		{
 			line = extract(stash);
 			if (!line)
-				return (free_premium(&stash, 0));
+				return (super_free(&stash, 0));
 			return (stash = recreate(stash), line);
 		}
 	}
-	return (free_premium(&stash, 1));
+	return (super_free(&stash, 1));
 }

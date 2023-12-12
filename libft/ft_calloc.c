@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:38:32 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/05 11:48:19 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 10:26:06 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*array;
+	void	*mem;
 
-	array = malloc(count * size);
-	if (!array)
+	if (count && size && count > (UINT_MAX / size))
 		return (NULL);
-	ft_bzero(array, count * size);
-	return (array);
+	mem = malloc(count * size);
+	if (!mem)
+		return (NULL);
+	ft_bzero(mem, count * size);
+	return (mem);
 }
