@@ -6,26 +6,28 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:52:40 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/11 14:43:47 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 20:51:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1024
 # endif
 
-char	*get_next_line(int fd);
+# include <stdlib.h>
+# include <unistd.h>
+
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*super_free(char **stash, int iffy);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strjoin(char *s1, char *s2, int *eol);
+void	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*initialize(char *stash, int *eol);
+size_t	find_eol(char *line);
+char	*extract(char *line, char *stash, int *eol, int fd);
+char	*get_next_line(int fd);
 
 #endif

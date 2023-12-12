@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:59 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/12 16:13:58 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 20:48:49 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,96 +22,63 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*dub;
-	size_t	i;
-
-	if (!s1)
-		return (NULL);
-	dub = malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!dub)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		dub[i] = s1[i];
-		i++;
-	}
-	dub[i] = '\0';
-	return (dub);
+	while (n--)
+		*(char *)s++ = 0;
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*new;
 	size_t	i;
-	size_t	j;
+
+	i = 0;
+	if (!dst && !src)
+		return (NULL);
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
+}
+
+char	*ft_strjoin(char *s1, char *s2, int *line_end)
+{
+	char	*result;
+	size_t	len1;
+	size_t	len2;
 
 	if (!s1 || !s2)
 		return (NULL);
-	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!new)
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	result = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!result)
+	{
+		free(s1);
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		new[i] = s1[i];
-		i++;
 	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		new[i] = s2[j];
-		i++;
-		j++;
-	}
-	new[i] = '\0';
-	return (new);
+	ft_memcpy(result, s1, len1);
+	free(s1);
+	ft_memcpy(result + len1, s2, len2 + 1);
+	if (len1 + len2 > 0 && *(result + len1 + len2 - 1) == '\n')
+		*line_end = 0;
+	return (result);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	size;
-	char	*sub;
 
-	if (!s)
-		return (0);
-	if ((unsigned int)ft_strlen(s) < start)
-		return (ft_strdup(""));
-	size = ft_strlen(s + start);
-	if (size < len)
-		len = size;
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
 	i = 0;
-	while (i < len)
+	if (dstsize > 0)
 	{
-		sub[i] = s[start + i];
-		i++;
-	}
-	sub[i] = 0;
-	return (sub);
-}
-
-void	*super_free(char **stash, int iffy)
-{
-	char	*line;
-
-	while (*stash)
-	{
-		if (iffy == 1)
+		while (src[i] && i < dstsize - 1)
 		{
-			line = ft_strdup(*stash);
-			free(*stash);
-			*stash = NULL;
-			return (line);
+			dst[i] = src[i];
+			i++;
 		}
-		else
-			free(*stash);
-		*stash = NULL;
+		dst[i] = '\0';
 	}
-	return (NULL);
 }

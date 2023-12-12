@@ -6,115 +6,94 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:51:13 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/12 16:16:41 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 20:52:03 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*cpy_to_stash(char *stash, char *buf)
+char	*initialize(char *stash, int *eol)
 {
-	char	*temp;
-	char	*res;
-
-	res = NULL;
-	if (!stash && buf)
-	{
-		res = ft_strdup(buf);
-		return (super_free(&res, 1));
-	}
-	temp = super_free(&stash, 1);
-	if (!temp)
-		return (super_free(&temp, 0));
-	res = ft_strjoin(temp, buf);
-	if (!res)
-		free(res);
-	free(temp);
-	return (res);
-}
-
-static char	*extract(char *stash)
-{
-	char	*line;
 	size_t	i;
-	size_t	j;
+	char	*line;
 
 	i = 0;
-	if (!stash)
-		return (super_free(&stash, 0));
-	while (stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n')
 		i++;
-	line = malloc(sizeof(char) * (i + 2));
+	i++;
+	line = malloc(sizeof(char) * (i + 1));
 	if (!line)
-		return (super_free(&line, 0));
-	j = 0;
-	while (j < i + 1)
-	{
-		line[j] = stash[j];
-		j++;
-	}
-	line[j] = '\0';
+		return (NULL);
+	ft_memcpy(line, stash, i);
+	line[i] = '\0';
+	if (i > 0 && line[i - 1] == '\n')
+		*eol = i - 1;
 	return (line);
 }
 
-static char	*recreate(char *stash)
-{
-	size_t	i;
-	char	*res;
-
-	i = 0;
-	if (!stash)
-		return (NULL);
-	while (stash[i] != '\n')
-		i++;
-	if (stash[i + 1] == '\0')
-		return (super_free(&stash, 0));
-	res = ft_substr(stash, i + 1, ft_strlen(stash));
-	super_free(&stash, 0);
-	if (!res)
-		return (NULL);
-	return (res);
-}
-
-static int	check_nl(char *s)
+size_t	find_eol(char *line)
 {
 	size_t	i;
 
-	if (!s)
-		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	if (!line)
+		return (-1);
+	while (i < BUFFER_SIZE)
 	{
-		if (s[i] == '\n')
-			return (1);
+		if (line[i] == '\n' || line[i] == '\0')
+			return (i + 1);
 		i++;
 	}
-	return (0);
+	return (i);
+}
+
+char	*extract(char *line, char *stash, int *eol, int fd)
+{
+	char	buffer[BUFFER_SIZE + 1];
+	ssize_t	read_check;
+	size_t	line_size;
+
+	while (*eol == -1)
+	{
+		ft_bzero(buffer, (BUFFER_SIZE + 1));
+		read_check = read(fd, buffer, BUFFER_SIZE);
+		if (read_check == -1)
+		{
+			free(line);
+			ft_bzero(stash, (BUFFER_SIZE + 1));
+			return (NULL);
+		}
+		line_size = find_eol(buffer);
+		ft_strlcpy(stash, &buffer[line_size], (BUFFER_SIZE + 1));
+		buffer[line_size] = '\0';
+		line = ft_strjoin(line, buffer, eol);
+		if (read_check == 0)
+		{
+			ft_bzero(stash, BUFFER_SIZE + 1);
+			break ;
+		}
+	}
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	char		buf[BUFFER_SIZE + 1];
-	long		ret;
-	static char	*stash = NULL;
-	static char	*line;
+	static char	stash[BUFFER_SIZE + 1];
+	char		*line;
+	int			eol;
 
-	line = 0;
-	ret = BUFFER_SIZE;
-	while (ret > 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	eol = -1;
+	line = initialize(stash, &eol);
+	if (!line)
+		return (NULL);
+	ft_strlcpy(stash, &stash[eol + 1], BUFFER_SIZE + 1);
+	line = extract(line, stash, &eol, fd);
+	if (!line || line[0] == '\0')
 	{
-		ret = read(fd, buf, BUFFER_SIZE);
-		if ((ret <= 0 && !stash) || ret == -1)
-			return (super_free(&stash, 0));
-		buf[ret] = '\0';
-		stash = cpy_to_stash(stash, buf);
-		if (check_nl(stash))
-		{
-			line = extract(stash);
-			if (!line)
-				return (super_free(&stash, 0));
-			return (stash = recreate(stash), line);
-		}
+		free(line);
+		return (NULL);
 	}
-	return (super_free(&stash, 1));
+	return (line);
 }

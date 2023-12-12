@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:16:24 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/05 11:48:16 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/12 19:59:38 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	char	*str;
-
-	str = s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
+	while (n--)
+		*(char *)s++ = 0;
 }
