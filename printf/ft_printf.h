@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:31:38 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/13 18:10:29 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/16 18:04:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int		ft_printf(const char *str, ...);
-
-/* print functions */
-int		ft_print_char(unsigned char c);
-int		ft_print_str(char *s);
-int		ft_print_int(int nb);
-int		ft_print_int_base(long nbr, char *base);
-int		ft_print_ptr(unsigned long long nbr);
-int		ft_print_uint(unsigned int nb);
-
-/* utils */
-size_t	ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
+int			uputchar(unsigned char c);
+int			putstr(char *s);
+int			putnbr(int n);
+int			putunsigned(unsigned int nb);
+int			put_intbase(long nbr, char *base);
+int			putpointer(unsigned long long nbr);
+int			ft_printf(const char *str, ...);
 
 #endif

@@ -6,11 +6,12 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:33:23 by asalo             #+#    #+#              #
-#    Updated: 2023/12/13 17:20:38 by asalo            ###   ########.fr        #
+#    Updated: 2023/12/16 18:08:56 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 		=	ft_printf.c ft_printf_utils.c
+SRCS 		=	ft_printf.c ft_printf_utils.c print_hexa_int.c print_int.c \
+				print_pointer.c
 
 OBJS 		= $(SRCS:.c=.o)
 
