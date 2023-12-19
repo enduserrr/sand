@@ -6,29 +6,31 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:33:23 by asalo             #+#    #+#              #
-#    Updated: 2023/12/18 18:34:39 by asalo            ###   ########.fr        #
+#    Updated: 2023/12/19 17:42:45 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 		=	ft_printf.c print_digit.c
-OBJS 		= $(SRCS:.c=.o)
 NAME		= libftprintf.a
-AR			= ar rc
+SRCS		= ft_printf.c print_digit.c
+INC 		= includes/ft_printf.h
+OBJS		= ft_printf.o print_digit.o
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -f
+CFLAGS 		= -Wall -Wextra -Werror
 
-${NAME}: 	${OBJS}
-					${AR} ${NAME} ${OBJS}
+.c.o:
+			${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INC}
 
-all:		${NAME}
+$(NAME) :	${OBJS}
+			ar rc ${NAME} ${OBJS}
 
-clean:
-			${RM} ${OBJS}
+all: 		$(NAME)
 
-fclean: 	clean
-					${RM} ${NAME}
+clean :
+			rm -f ${OBJS}
 
-re: 		fclean all 
+fclean:		clean
+			rm -f ${NAME}
+
+re:			fclean all
 
 .PHONY:		all clean fclean re

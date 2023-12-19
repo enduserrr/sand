@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:31:38 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/18 18:29:52 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/19 17:43:10 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 int	print_char(int c);
 int	print_str(char *s);
-int	print_digit(long n, int base);
-int	print_digit2(long n, int base);
-int	print_digit3(unsigned int n, int base);
-int	print_format(char type, va_list ap);
+int	print_digit(long n, char *base);
+int	print_uint(unsigned int n, int base);
+int	print_ptr(unsigned long long n, char *base);
+int	find_type(char type, va_list ap);
 int	ft_printf(const char *str, ...);
 
 #endif
