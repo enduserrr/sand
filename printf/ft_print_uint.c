@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_uint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 12:31:38 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:37:52 by asalo            ###   ########.fr       */
+/*   Created: 2023/12/20 21:30:11 by asalo             #+#    #+#             */
+/*   Updated: 2023/12/20 21:31:24 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+int print_uint(unsigned long n, char *base)
+{
+	int count;
+	int base_len;
 
-int	print_char(int c);
-int	print_str(char *s);
-int	print_digit(long long int n, char *base);
-int	print_uint(unsigned long n, char *base);
-int	print_ptr(size_t ptr);
-int	ft_printf(const char *str, ...);
-
-#endif
+	base_len = 0;
+	while (base[base_len])
+		base_len++;
+	if (n < (unsigned long)base_len)
+		return (print_char(base[n]));
+	else
+	{
+		count = print_digit(n / base_len, base);
+		return (count + print_digit(n % base_len, base));
+	}
+}

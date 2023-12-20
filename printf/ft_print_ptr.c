@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 12:31:38 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:37:52 by asalo            ###   ########.fr       */
+/*   Created: 2023/12/20 21:29:40 by asalo             #+#    #+#             */
+/*   Updated: 2023/12/20 21:30:59 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+int print_ptr(size_t ptr)
+{
+	size_t	value;
+	int		count;
+	int 	tmp;
+	char	*base;
 
-int	print_char(int c);
-int	print_str(char *s);
-int	print_digit(long long int n, char *base);
-int	print_uint(unsigned long n, char *base);
-int	print_ptr(size_t ptr);
-int	ft_printf(const char *str, ...);
-
-#endif
+	base = "0123456789abcdef";
+	tmp = 0;
+	value = (size_t)ptr;
+	tmp = write (1, "0x", 2);
+	if (tmp == -1)
+		return (-1);
+	count = print_uint(value, base);
+	return (count + 2);
+}
