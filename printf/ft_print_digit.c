@@ -6,17 +6,17 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:26:45 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:36:49 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/20 21:44:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_digit(long long int n, char *base)
+int	print_digit(long long int n, char *base)
 {
-	int count;
-	int count2;
-	int base_len;
+	int	count;
+	int	count2;
+	int	base_len;
 
 	base_len = 0;
 	while (base[base_len])

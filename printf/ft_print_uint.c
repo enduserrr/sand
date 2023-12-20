@@ -6,16 +6,16 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 21:30:11 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:31:24 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/20 21:46:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_uint(unsigned long n, char *base)
+int	print_uint(unsigned long n, char *base)
 {
-	int count;
-	int base_len;
+	int	count;
+	int	base_len;
 
 	base_len = 0;
 	while (base[base_len])

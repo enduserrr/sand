@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:24:57 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:37:33 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/20 21:41:30 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ int	ft_printf(const char *str, ...)
 			break ;
 		}
 		str++;
-		count += temp;
-		count += temp2;
+		count += temp + temp2;
 	}
 	va_end(ap);
 	return (count);

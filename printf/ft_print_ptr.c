@@ -6,17 +6,17 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 21:29:40 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:30:59 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/20 21:44:53 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_ptr(size_t ptr)
+int	print_ptr(size_t ptr)
 {
 	size_t	value;
 	int		count;
-	int 	tmp;
+	int		tmp;
 	char	*base;
 
 	base = "0123456789abcdef";
