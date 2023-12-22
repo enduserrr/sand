@@ -6,15 +6,15 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:33:23 by asalo             #+#    #+#              #
-#    Updated: 2023/12/20 21:36:21 by asalo            ###   ########.fr        #
+#    Updated: 2023/12/22 16:49:39 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
-SRCS		= ft_printf.c ft_print_char.c ft_print_digit.c ft_print_ptr.c\
+SRCS		= ft_printf.c ft_print_char.c ft_print_dg.c ft_print_ptr.c\
 				ft_print_str.c ft_print_uint.c
 INC 		= ft_printf.h
-OBJS		= ft_printf.o ft_print_char.o ft_print_digit.o ft_print_ptr.o\
+OBJS		= ft_printf.o ft_print_char.o ft_print_dg.o ft_print_ptr.o\
 				ft_print_str.o ft_print_uint.o
 CC			= cc
 CFLAGS 		= -Wall -Wextra -Werror

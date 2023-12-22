@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_digit.c                                   :+:      :+:    :+:   */
+/*   ft_print_dg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:26:45 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:44:08 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:53:32 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_digit(long long int n, char *base)
+int	ft_print_dg(long long int n, char *base)
 {
 	int	count;
 	int	count2;
@@ -23,18 +23,18 @@ int	print_digit(long long int n, char *base)
 		base_len++;
 	if (n < 0)
 	{
-		if (print_char('-') == -1)
+		if (ft_print_char('-') == -1)
 			return (-1);
-		return (print_digit(-n, base) + 1);
+		return (ft_print_dg(-n, base) + 1);
 	}
 	else if (n < base_len)
-		return (print_char(base[n]));
+		return (ft_print_char(base[n]));
 	else
 	{
-		count = print_digit(n / base_len, base);
+		count = ft_print_dg(n / base_len, base);
 		if (count == -1)
 			return (-1);
-		count2 = print_digit(n % base_len, base);
+		count2 = ft_print_dg(n % base_len, base);
 		if (count2 == -1)
 			return (-1);
 		return (count + count2);

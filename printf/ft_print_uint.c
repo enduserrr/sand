@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 21:30:11 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:46:05 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:48:17 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_uint(unsigned long n, char *base)
+int	ft_print_uint(unsigned long n, char *base)
 {
 	int	count;
 	int	base_len;
@@ -21,10 +21,10 @@ int	print_uint(unsigned long n, char *base)
 	while (base[base_len])
 		base_len++;
 	if (n < (unsigned long)base_len)
-		return (print_char(base[n]));
+		return (ft_print_char(base[n]));
 	else
 	{
-		count = print_digit(n / base_len, base);
-		return (count + print_digit(n % base_len, base));
+		count = ft_print_dg(n / base_len, base);
+		return (count + ft_print_dg(n % base_len, base));
 	}
 }

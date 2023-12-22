@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 21:33:04 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:45:17 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/20 22:02:28 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_str(char *s)
+int	ft_print_str(char *s)
 {
 	int	count;
 

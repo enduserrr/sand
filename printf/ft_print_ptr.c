@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 21:29:40 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/20 21:44:53 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/20 22:02:55 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_ptr(size_t ptr)
+int	ft_print_ptr(size_t ptr)
 {
 	size_t	value;
 	int		count;
@@ -25,6 +25,6 @@ int	print_ptr(size_t ptr)
 	tmp = write (1, "0x", 2);
 	if (tmp == -1)
 		return (-1);
-	count = print_uint(value, base);
+	count = ft_print_uint(value, base);
 	return (count + 2);
 }
