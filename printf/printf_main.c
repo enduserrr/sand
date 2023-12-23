@@ -1,16 +1,16 @@
 #include "ft_printf.h"
 
-int	main()
+int	main(void)
 {
 	int x = 50;
-	int *pt = &x;
+	int *ptr = &x;
 	int	my_age;
-	void *ptr;
+	void *nptr;
 
 	x= 50;
-	pt = &x;
+	ptr = &x;
 	my_age = 1;
-	ptr = NULL;
+	nptr = NULL;
 	ft_printf("\nTest s: %s\n", "John");
 	printf("Real s: %s\n\n", "John");
 	ft_printf("Test c: %c\n", 'a');
@@ -29,9 +29,9 @@ int	main()
 	printf("Real: the %% character %%%%\n");
 	ft_printf("Test p: %p\n", &my_age);
 	printf("Real p: %p\n", &my_age);
-	ft_printf("Test p: %p\n", &ptr);
-	printf("Real p: %p\n", &ptr);
-	ft_printf("The address is: %p, the value is %d\n", pt, *pt);
-	printf("The address is: %p, the value is %d\n", pt, *pt);
-
+	ft_printf("Test p: %p\n", &nptr);
+	printf("Real p: %p\n", &nptr);
+	ft_printf("The address is: %p, the value is %d\n", ptr, *ptr);
+	printf("The address is: %p, the value is %d\n", ptr, *ptr);
+	return (0);
 }
