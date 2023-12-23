@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:31:38 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/22 17:30:08 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/23 18:32:35 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+# include <stddef.h>
 
 int	ft_print_char(int c);
 int	ft_print_str(char *s);
