@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:24:57 by asalo             #+#    #+#             */
-/*   Updated: 2023/12/23 16:33:38 by asalo            ###   ########.fr       */
+/*   Updated: 2023/12/24 16:40:52 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_find_format(char type, va_list ap, int temp)
+int	ft_find_format(char type, va_list ap, int temp)
 {
 	int	count;
 
@@ -41,67 +41,31 @@ static int	ft_find_format(char type, va_list ap, int temp)
 	return (count += temp);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		count;
 	int		temp;
 	int		temp2;
 
-	va_start(ap, str);
+	va_start(ap, format);
 	count = 0;
-	while (*str)
+	while (*format)
 	{
 		temp = 0;
 		temp2 = 0;
-		if (*str == '%')
-			temp = ft_find_format(*(++str), ap, temp);
+		if (*format == '%')
+			temp = ft_find_format(*(++format), ap, temp);
 		else
-			temp2 = write(1, str, 1);
+			temp2 = write(1, format, 1);
 		if (temp == -1 || temp2 == -1)
 		{
 			count = -1;
 			break ;
 		}
-		str++;
+		format++;
 		count += temp + temp2;
 	}
 	va_end(ap);
 	return (count);
-}
-
-int	main(void)
-{
-	int x = 50;
-	int *ptr = &x;
-	int	my_age;
-	void *nptr;
-
-	x= 50;
-	ptr = &x;
-	my_age = 1;
-	nptr = NULL;
-	ft_printf("\nTest s: %s\n", "John");
-	printf("Real s: %s\n\n", "John");
-	ft_printf("Test c: %c\n", 'a');
-	printf("Real c: %c\n\n", 'a');
-	ft_printf("Test d: %d\n", 42);
-	printf("Real d; %d\n\n", 42);
-	ft_printf("Test i: %i\n", -99);
-	printf("Real i: %i\n\n", -99);
-	ft_printf("Test u: %u\n", -1);
-	printf("Real u: %u\n\n", -1);
-	ft_printf("Test x: %x\n", -1);
-	printf("Real x: %x\n\n", -1);
-	ft_printf("Test X: %X\n", -2);
-	printf("Real X: %X\n\n", -2);
-	ft_printf("Test: the %% character %%%%\n");
-	printf("Real: the %% character %%%%\n");
-	ft_printf("Test p: %p\n", &my_age);
-	printf("Real p: %p\n", &my_age);
-	ft_printf("Test p: %p\n", &nptr);
-	printf("Real p: %p\n", &nptr);
-	ft_printf("The address is: %p, the value is %d\n", ptr, *ptr);
-	printf("The address is: %p, the value is %d\n", ptr, *ptr);
-	return (0);
 }
