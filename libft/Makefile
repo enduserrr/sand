@@ -6,11 +6,11 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:37:45 by asalo             #+#    #+#              #
-#    Updated: 2023/12/05 11:50:44 by asalo            ###   ########.fr        #
+#    Updated: 2023/12/27 13:44:58 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS   		= ft_isprint.c ft_putendl_fd.c ft_strlcat.c ft_substr.c \
+SRCS		= ft_isprint.c ft_putendl_fd.c ft_strlcat.c ft_substr.c \
 			ft_atoi.c ft_itoa.c ft_putnbr_fd.c ft_strlcpy.c \
 			ft_tolower.c ft_bzero.c ft_memchr.c ft_putstr_fd.c \
 			ft_strlen.c ft_toupper.c ft_calloc.c ft_memcmp.c \
