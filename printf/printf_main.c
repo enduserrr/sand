@@ -4,26 +4,38 @@
 
 int main(void)
 {
-	int		count;
-	void	*ptr;
+	char	*ptr = NULL;
+	char	*str = "%d\n aand where to %d??";
+	char	*s = "%%%     %%";
+	int		i = 0;
+	int		j = 0;
+	int		k = 0;
 
-	count = 0;
-	ptr = &count;
-	ft_printf("\ntest: %s\n", "ayo");
-	printf("real: %s\n", "ayo");
-	ft_printf("\ntest: %x\n", -42);
-	printf("real: %x\n", -42);
-	ft_printf("\ntest: %X\n", -42);
-	printf("real: %X\n", -42);
-	ft_printf("\ntest: %%\n");
-	printf("real: %%\n");
-	ft_printf("\ntest: %u\n", -42);
-	printf("real: %u\n", -42);
-	ft_printf("\ntest: %u\n", 42);
-	printf("real: %u\n", 42);
-	ft_printf("\ntest: %p\n", &ptr);
-	printf("real: %p\n", &ptr);
-	ft_printf("\ntest: %i\n", 42);
-	printf("real: %i\n", 42);
+	ft_printf("%c\n", 'c');
+	printf("%c\n", 'c');
+	ft_printf("\n%s\n", "ayo");
+	printf("%s\n", "ayo");
+	ft_printf("\n%x\n", -42);
+	printf("%x\n", -42);
+	ft_printf("\n%X\n", -42);
+	printf("%X\n", -42);
+	ft_printf("\n%%\n");
+	printf("%%\n");
+	ft_printf("\n%u\n", -42);
+	printf("%u\n", -42);
+	ft_printf("\n%u\n", 42);
+	printf("%u\n", 42);
+	ft_printf("\n%p\n", ptr);
+	printf("%p\n", ptr);
+	ft_printf("\n%i\n", 42);
+	printf("%i\n", 42);
+	printf("\n");
+	i = ft_printf(str, k);
+	printf("\n");
+	j = printf(str, k);
+	printf("\n");
+	printf("i = %d and j = %d\n", i, j);
+	ft_printf("\n%s\n", s);
+	printf("%s\n", s);
 	return (0);
 }
