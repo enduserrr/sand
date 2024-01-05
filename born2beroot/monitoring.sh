@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARCH=$(uname -srvmo | fold -s -w 50 | sed ':a;N;$;!ba;s/\n/\n\t\t\t  /g')
+ARCH=$(uname -srvmo | fold -s -w 50 | sed ':a;N;$!ba;s/\n/\n\t\t\t  /g')
 PCPU=$(grep 'physical id' /proc/cpuinfo | uniq | wc -l)
 VCPU=$(grep processor /proc/cpuinfo | uniq | wc -l)
 RAM_TOTAL=$(free -h | grep Mem | awk '{print $2}')
@@ -19,8 +19,9 @@ MAC_ADDR=$(ip link show | grep link/ether | awk '{print $2}')
 SUDO_LOG=$(grep COMMAND /var/log/sudo/sudo.log | wc -l)
 
 wall "
-	------------------------------------------------------
+	_________________________________________________________________
 	#ARCHITECHTURE	: $ARCH
+
 	#RAM USAGE	: $RAM_USED/$RAM_TOTAL ($RAM_PERV)
 	#DISK USAGE	: $DISK_USED/$DISK_TOTAL ($DISK_PERC)
 	#CPU LOAD	: $CPU_LOAD
@@ -32,4 +33,4 @@ wall "
 	#USERS LOGGED	: $USER_LOG
 	#IP (MAC)	: $IP_ADDR ($MAC_ADDR)
 	#SUDO		: $SUDO_LOG cmd
-	------------------------------------------------------"
+	__________________________________________________________________"
