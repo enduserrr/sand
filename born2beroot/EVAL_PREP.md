@@ -11,11 +11,13 @@
 - sudo groupdel <group>
 - sudo adduser <user> <group> | add user to group
 - sudo deluser <user> <group>
+- sudo deluser <user>
+- sudo passwd <username>
 - sudo nano /etc/hostname
 - sudo reboot
 - lsblk
 - dpkg -s sudo
-- getend group sudo
+- getent group sudo
 - sudo visudo
 - dpkg -s ufw
 - sudo service ufw status
