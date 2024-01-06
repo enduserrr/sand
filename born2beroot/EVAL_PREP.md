@@ -5,19 +5,18 @@
 - sudo service ufw status
 - sudo systemctl status ssh
 - uname -v
-- groups <user>
-- sudo useradd <username>
-- sudo groupadd <groupname>
+- getent group <group>
+- sudo adduser <username>
+- sudo deluser <user>
+- sudo addgroup <groupname>
 - sudo groupdel <group>
 - sudo adduser <user> <group> | add user to group
 - sudo deluser <user> <group>
-- sudo deluser <user>
 - sudo passwd <username>
 - sudo nano /etc/hostname
 - sudo reboot
 - lsblk
 - dpkg -s sudo
-- getent group sudo
 - sudo visudo
 - dpkg -s ufw
 - sudo service ufw status
@@ -30,3 +29,5 @@
 - sudo service cron stop
 - sudo service cron start
 - sudo init 0
+- yes > /dev/null &
+- kill $(pgrep yes)
