@@ -16,14 +16,25 @@
 
 ## USEFUL COMMANDS
 
-- uname -v			- dpkg -s ufw
-- lsblk				- sudo ufw status numbered
-- dpkg -s sudo (which sudo)	- sudo systemctl status ufw
-- sudo nano /etc/localhost	- sudo ufw allow <port>
-- sudo visudo			- sudo ufw allow <port num>
-- sudo reboot			- which ssh
-- sudo init 0			- sudo systemctl status ssh
+General:
+- uname -v
+- lsblk
+- dpkg -s sudo (which sudo)
+- sudo nano /etc/localhost
+- sudo visudo
+- sudo reboot
+- sudo init 0
 
+Ufw & ssh:
+- dpkg -s ufw
+- sudo ufw status numbered
+- sudo systemctl status ufw
+- sudo ufw allow <port>
+- sudo ufw allow <port num>
+- which ssh
+- sudo systemctl status ssh
+
+Users & groups:
 - sudo adduser <username>
 - sudo deluser <user>
 - sudo addgroup <groupname>
@@ -33,6 +44,7 @@
 - passwd <username>
 - getent group <group>
 
+Cron:
 - sudo crontab -e
 - sudo service cron stop
 - sudo service cron start
