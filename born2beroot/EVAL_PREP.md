@@ -1,33 +1,22 @@
 # BORN2BEROOT RELATED COMMANDS FOR EVALUATION
+	
+- uname -v			- dpkg -s ufw
+- lsblk				- sudo ufw status numbered
+- dpkg -s sudo (which sudo)	- sudo systemctl status ufw
+- sudo nano /etc/localhost	- sudo ufw allow <port>
+- sudo visudo			- sudo ufw allow <port num>
+- sudo reboot			- which ssh
+- sudo init 0			- sudo systemctl status ssh
 
-- ls /usr/bin/*session
-- sudo ufw status
-- sudo service ufw status
-- sudo systemctl status ssh
-- uname -v
-- getent group <group>
 - sudo adduser <username>
 - sudo deluser <user>
 - sudo addgroup <groupname>
 - sudo groupdel <group>
-- sudo adduser <user> <group> | add user to group
+- sudo adduser <user> <group>
 - sudo deluser <user> <group>
-- sudo passwd <username>
-- sudo nano /etc/hostname
-- sudo reboot
-- lsblk
-- dpkg -s sudo
-- sudo visudo
-- dpkg -s ufw
-- sudo service ufw status
-- sudo ufw status numbered
-- sudo ufw allow 8080
-- sudo ufw delete <nb of rule>
-- which ssh
-- sudo systemctl status ssh
+- passwd <username>
+- getent group <group>
+
 - sudo crontab -e
 - sudo service cron stop
 - sudo service cron start
-- sudo init 0
-- yes > /dev/null &
-- kill $(pgrep yes)
