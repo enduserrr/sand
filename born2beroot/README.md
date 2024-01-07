@@ -1,12 +1,14 @@
 # BORN2BEROOT
 
-- Download the latest bebian image and move it to the directory the VM will be installed
+To start download the latest Debian image and move it to the directory where the VM will be installed.
  
 ## USEFUL RESOURCES
 
-- [Download debian](https://www.debian.org/download)
+- [Latest Debian release](https://www.debian.org/download)
 
 - [Info video playlist](https://www.youtube.com/playlist?list=PLAoA-usw1t-4sIlwNXKS2RIn0ZBx4VQhn)
+
+- [Tutorial](https://github.com/gemartin99/Born2beroot-Tutorial)
 
 ## TESTERS
 
@@ -17,18 +19,18 @@
 ## GOOD TO KNOW
 
 Virtual Machine:
-VM is virtualized computational device created inside a physical computer and it's OS. The vm gets uses a given amount of resources partitioned from the physical computer for the vm. VM has it's own operating system and software as any computer woud. It is a closed system inside a host system, making it useful as a testing environment for risky or unstable endevours as well as giving the user the benefit of having multiple different OS's and digital environments on singular hardware device. >> Cost effective, versatile and easily containable.
+A Virtual Machine (VM) is a virtualized computational device created inside a physical computer along with its operating system. The VM utilizes a specified amount of resources partitioned from the physical computer. It has its own operating system and software, functioning as a closed system within a host system. VMs are valuable for testing risky or unstable endeavors and provide the benefit of having multiple different OS environments on a single hardware device. They are cost-effective, versatile, and easily containable.
 
 Aptitude & apt:
-Both are package managers. Unlike apt (lower level) aptitude is a higher level package manager. Compared to apt it has more robust and numerous capabilities as well as graphical user interface.
+Both are package managers. Aptitude is a higher-level package manager compared to apt, offering more robust capabilities and a graphical user interface.
 
 AppArmor:
-Is a security module in the Linux kernel that enables the system admin to restrict what capabilities a program can use.
+AppArmor is a security module in the Linux kernel that allows the system admin to restrict the capabilities of a program.
 
-LVM:
-Lvm is short for logical volume manager which enables easier allocation and management of logical volumes on physical volumes. It offers more flexibility compared to conventional partitioning schemes for storing volumes.
+LVM (Logical Volume Manager):
+LVM enables easier allocation and management of logical volumes on physical volumes, offering more flexibility than conventional partitioning schemes for storing volumes.
 
-Logical volumes are groups of information from one or more physical volumes. Physical volumes can be physical storage devices or partitions of physical storage devices.
+Logical volumes are groups of information from one or more physical volumes, which can be physical storage devices or partitions of physical storage devices.
 
 ## USEFUL COMMANDS
 
@@ -41,7 +43,7 @@ General:
 - sudo reboot
 - sudo init 0
 
-Ufw & ssh:
+Ufw & SSH:
 - dpkg -s ufw
 - sudo ufw status numbered
 - sudo systemctl status ufw
@@ -50,7 +52,7 @@ Ufw & ssh:
 - which ssh
 - sudo systemctl status ssh
 
-Users & groups:
+Users & Groups:
 - sudo adduser <username>
 - sudo deluser <user>
 - sudo addgroup <groupname>
