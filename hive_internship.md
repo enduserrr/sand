@@ -1,6 +1,6 @@
 # HIVE INTERNSHIP SUMMARY
 
-## FOR THE MENTOR:
+## FOR THE MENTOR
 
 - Contract
 - Assigning the tasks
