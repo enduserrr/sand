@@ -1,5 +1,19 @@
 # HIVE INTERNSHIP SUMMARY
 
+## FOR THE MENTOR:
+
+- Contract
+- Assigning the tasks
+- Mid term evaluation
+- Final evaluation
+
+## FOR THE INTERN
+
+- Ensuring the contract fulfills the requirements
+- EvaluationS and peer-video project (participatION in mid-term and final eval)
+- Fill out required forms on intra and upload signed internship contract
+- Sufficient documentation (work, learning, experience) and sharing the experience with Hive community
+
 ## OVERVIEW
 
 Duration:
@@ -17,7 +31,7 @@ Contract Type:
 
 Evaluation Periods:
 
-- There are two evaluation periods during the internship:
+- There are two evaluation periods during the internship
 - Mid-term evaluation: Sent halfway through the work period.
 - Final evaluation: Sent one week before the end of the contract.
 
@@ -36,17 +50,3 @@ Validation and Conditions:
 - The internship project is not retroactive, and no employment done before uploading the contract is validated.
 - Contracts are not validated for students who do not fulfill the specified conditions.
 - Contract for 4-6 months (even if the employment goes on longer)
-
-## FOR THE MENTOR:
-
-- Contract
-- Assigning the tasks
-- Mid term evaluation
-- Final evaluation
-
-## FOR THE INTERN
-
-- Ensuring the contract fulfills the requirements
-- Evaluation and peer-video project (participate in midterm and final eval)
-- Fill out required forms on intra and upload signed internship contract
-- Sufficient documentation (work, learning, experience) and sharing the experience with Hive community
