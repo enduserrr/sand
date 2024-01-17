@@ -6,14 +6,14 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:33:23 by asalo             #+#    #+#              #
-#    Updated: 2023/12/24 16:47:03 by asalo            ###   ########.fr        #
+#    Updated: 2024/01/17 13:40:49 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
-SRCS		= ft_printf.c ft_print_format.c
+SRCS		= ft_printf.c ft_print_formats.c
 INC 		= ft_printf.h
-OBJS		= ft_printf.o ft_print_format.o
+OBJS		= ft_printf.o ft_print_formats.o
 CC			= cc
 CFLAGS 		= -Wall -Wextra -Werror
 

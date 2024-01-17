@@ -6,53 +6,44 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:37:45 by asalo             #+#    #+#              #
-#    Updated: 2023/12/27 13:44:58 by asalo            ###   ########.fr        #
+#    Updated: 2024/01/17 15:31:00 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_isprint.c ft_putendl_fd.c ft_strlcat.c ft_substr.c \
-			ft_atoi.c ft_itoa.c ft_putnbr_fd.c ft_strlcpy.c \
-			ft_tolower.c ft_bzero.c ft_memchr.c ft_putstr_fd.c \
-			ft_strlen.c ft_toupper.c ft_calloc.c ft_memcmp.c \
-			ft_split.c ft_strmapi.c ft_isalnum.c ft_memcpy.c \
-			ft_strchr.c ft_strncmp.c ft_isalpha.c ft_memmove.c \
-			ft_strdup.c ft_strnstr.c ft_isascii.c ft_memset.c \
-			ft_striteri.c ft_strrchr.c ft_isdigit.c ft_putchar_fd.c \
-			ft_strjoin.c ft_strtrim.c
-
-OBJS		= $(SRCS:.c=.o)
-
-SRCSB  		= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
-       		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-
-BOBJS		= $(SRCSB:.c=.o)
-
 NAME		= libft.a
-AR			= ar rc
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -f
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+DIR_SRCS	= srcs
+DIR_OBJS	= objs
+SUBDIRS		= is to mem str put lst gnl printf
 
-${NAME}: 	${OBJS}
-					${AR} ${NAME} ${OBJS}
+SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
+OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
+SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
+OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 
-all:		${NAME}
+INCLUDES	= -I incs
+
+CC		= clang
+CFLAGS	= -Wall -Wextra -Werror
+RM		= /bin/rm -f
+
+$(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
+			@mkdir -p $(DIR_OBJS) $(OBJS_DIRS)
+			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS)
+			@ar -rcs $(NAME) $(OBJS)
+			@ranlib $(NAME)
 
 clean:
-			${RM} ${OBJS} ${BOBJS}
+			rm -f $(OBJS)
+			@$(RM) -r $(DIR_OBJS)
 
-fclean: 	clean
-					${RM} ${NAME} ${BOBJS} .bonus
+fclean:		clean
+			rm -f $(NAME)
 
-re: 		fclean all 
+re:			fclean all
 
-bonus:		.bonus
-
-.bonus:		$(NAME) $(BOBJS)
-					$(AR) $(NAME) $(BOBJS)
-					touch	.bonus
-
-.PHONY:		all bonus clean fclean re
+.PHONY:		all clean fclean re
