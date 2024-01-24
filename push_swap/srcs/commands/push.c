@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:03:30 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/23 19:14:35 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/24 14:31:59 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ static void	push(t_stack_node **dst, t_stack_node **src)
 }
 
 /*Push the top of b to the top a*/
-void	pa(t_stack_node **a, t_stack_node **b, bool print)
+void	pa(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	push(a, b);
-	if (!print)
-		ft_printf("pa\n");
+	if (!checker)
+		ft_checkerf("pa\n");
 }
 
 /*Push the top of a to the top of b*/
-void	pb(t_stack_node **b, t_stack_node **a, bool print)
+void	pb(t_stack_node **b, t_stack_node **a, bool checker)
 {
 	push(b, a);
-	if (!print)
-		ft_printf("pb\n");
+	if (!checker)
+		ft_checkerf("pb\n");
 }

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/23 19:16:20 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/24 14:50:06 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,16 @@ t_stack_node	*find_largest(t_stack_node *stack);
 /*		ALGORITHM			*/
 
 /*		COMMANDS			*/
-void	pa(t_stack_node **a, t_stack_node **b, bool print);
-void	pb(t_stack_node **b, t_stack_node **a, bool print);
+void			pa(t_stack_node **a, t_stack_node **b, bool checker);
+void			pb(t_stack_node **b, t_stack_node **a, bool checker);
+void			sa(t_stack_node **a, bool checker);
+void			sb(t_stack_node **b, bool checker);
+void			ss(t_stack_node **a, t_stack_node **b, bool checker);
+void			ra(t_stack_node **a, bool checker);
+void			rb(t_stack_node **b, bool checker);
+void			rr(t_stack_node **a, t_stack_node **b, bool checker)
+void			rra(t_stack_node **a, bool checker);
+void			rrb(t_stack_node **b, bool checker);
+void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
 
 #endif
