@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   m_split.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 11:49:45 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/24 15:01:08 by asalo            ###   ########.fr       */
+/*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
+/*   Updated: 2024/01/24 15:13:45 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "incs/push_swap.h"
 
-static char	**free_array(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
-
-static size_t	str_count(const char *str, char c)
+// Whether or not to use size_t instead of ints?
+// Change new_str function to be next_str and add static int to keep count of the position
+static size_t	str_count(char *str, char sep)
 {
 	int	count;
 	int	skip;
@@ -35,12 +23,12 @@ static size_t	str_count(const char *str, char c)
 	skip = 0;
 	while (*str)
 	{
-		if (*str != c && skip == 0)
+		if (*str != sep && skip == 0)
 		{
 			skip = 1;
 			count++;
 		}
-		else if (*str == c)
+		else if (*str == sep)
 			skip = 0;
 		str++;
 	}
@@ -65,6 +53,7 @@ static void	new_str(char **str, size_t *len, char c)
 	}
 }
 
+/*Mutable split (not static)*/
 char	**ft_split(char const *s, char c)
 {
 	char	**new;
