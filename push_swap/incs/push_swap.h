@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/24 14:50:06 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 18:14:52 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void			error_free(t_stack_node **stack);
 
 /*		INITIATE STACK		*/
 void			init_stack_a(t_stack_node **a, char **argv);
-
+char			**split(char *s, char c);
 
 /*		INITIATE NODES		*/
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 void			init_nodes_b(t_stack_node *a, t_stack_node *b);
 void			current_index(t_stack_node *stack);
 void			set_cheapest(t_stack_node *stack);
-void			to_top(t_stack_node **stack, t_stack_node *top, char name);
+void			prep_for_push(t_stack_node **stack, t_stack_node *top, char name);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 
 /*		 STACK UTILS		*/
@@ -56,6 +56,8 @@ t_stack_node	*find_smallest(t_stack_node *stack);
 t_stack_node	*find_largest(t_stack_node *stack);
 
 /*		ALGORITHM			*/
+void			sort_stacks(t_stack_node **a, t_stack_node **b);
+void			sort_three(t_stack_node **a);
 
 /*		COMMANDS			*/
 void			pa(t_stack_node **a, t_stack_node **b, bool checker);
@@ -65,7 +67,7 @@ void			sb(t_stack_node **b, bool checker);
 void			ss(t_stack_node **a, t_stack_node **b, bool checker);
 void			ra(t_stack_node **a, bool checker);
 void			rb(t_stack_node **b, bool checker);
-void			rr(t_stack_node **a, t_stack_node **b, bool checker)
+void			rr(t_stack_node **a, t_stack_node **b, bool checker);
 void			rra(t_stack_node **a, bool checker);
 void			rrb(t_stack_node **b, bool checker);
 void			rrr(t_stack_node **a, t_stack_node **b, bool checker);

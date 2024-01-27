@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/19 19:15:54 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 18:11:49 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int argc, char **argv)
 	if (argc == 1|| (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = split_mod(argv[1], ' ');
-	init_stack(&a, argv + 1, argc == 2);
+		argv = split(argv[1], ' ');
+	init_stack_a(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -31,7 +31,8 @@ int	main(int argc, char **argv)
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else
-			push_swap(&a, &b);
+			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
+	return (0);
 }

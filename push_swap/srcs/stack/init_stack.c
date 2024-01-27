@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/23 19:00:09 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 17:20:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_stack_node	*get_cheapest(t_stack_node *stack)
 }
 
 /*Function that moves the required node to the top of the stack*/
-void	to_top(t_stack_node **stack, t_stack_node *top, char name)
+void	prep_for_push(t_stack_node **stack, t_stack_node *top, char name)
 {
 	while (*stack != top)
 	{
