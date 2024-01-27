@@ -6,11 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/23 17:17:26 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:12:20 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 static void	set_target_b(t_stack_node *a, t_stack_node *b)
 {

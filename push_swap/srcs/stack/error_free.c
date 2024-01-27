@@ -6,11 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:27:07 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/19 20:13:09 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:12:26 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 int	syntax_error(char *s)
 {

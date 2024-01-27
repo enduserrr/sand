@@ -6,11 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:03:30 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/24 14:31:59 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:22:54 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 static void	push(t_stack_node **dst, t_stack_node **src)
 {
@@ -41,7 +41,7 @@ void	pa(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	push(a, b);
 	if (!checker)
-		ft_checkerf("pa\n");
+		ft_printf("pa\n");
 }
 
 /*Push the top of a to the top of b*/
@@ -49,5 +49,5 @@ void	pb(t_stack_node **b, t_stack_node **a, bool checker)
 {
 	push(b, a);
 	if (!checker)
-		ft_checkerf("pb\n");
+		ft_printf("pb\n");
 }

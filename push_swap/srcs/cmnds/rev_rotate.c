@@ -6,11 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:17:49 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/24 14:51:09 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:11:57 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 static void	reverse_rotate(t_stack_node **stack)
 {

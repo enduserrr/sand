@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   turk_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 17:21:49 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:29:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 // static void	rotate_both(t_stack_node **a, t_stack_node **b,
 // 						t_stack_node *cheapest_n)
@@ -66,9 +66,9 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 
 static void	min_to_top(t_stack_node **a)
 {
-	while ((*a)->n != find_smallest(*a)->n)
+	while ((*a)->n != find_min(*a)->n)
 	{
-		if (find_smallest(*a)->above_median)
+		if (find_min(*a)->above_median)
 			ra(a, false);
 		else
 			rra(a, false);
@@ -96,5 +96,5 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 		move_b_to_a(a, b); //Move all `b` nodes back to a sorted stack `a`
 	}
 	current_index(*a);
-	min_on_top(a);
+	min_to_top(a);
 }

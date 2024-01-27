@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   m_split.c                                          :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 18:08:45 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:27:04 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 // Change new_str function to be next_str and add static int to keep count of the position
-static size_t	str_count(const *s, char sep)
+static size_t	str_count(char *s, char sep)
 {
 	int		count;
 	bool	skip;

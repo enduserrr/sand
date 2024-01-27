@@ -6,17 +6,16 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 18:34:54 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:20:24 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/incs/libft.h"/**/
-# include "libft/incs/ft_printf.h"/*ft_printf, split utils*/
-# include <stdbool.h>/*to use bool datat type*/
-# include <limits.h>/*to define MIN & MAX macros*/
+# include "../libft/incs/libft.h"
+# include <stdbool.h>
+# include <limits.h>
 
 typedef struct s_stack_node
 {
@@ -40,10 +39,10 @@ void			error_free(t_stack_node **stack);
 void			init_stack_a(t_stack_node **a, char **argv);
 char			**split(char *s, char c);
 int				stack_len(t_stack_node *stack);
-bool			stack_asc_order(t_stack_node *stack);
+bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*find_last(t_stack_node *stack);
-t_stack_node	*find_smallest(t_stack_node *stack);
-t_stack_node	*find_largest(t_stack_node *stack);
+t_stack_node	*find_min(t_stack_node *stack);
+t_stack_node	*find_max(t_stack_node *stack);
 
 /*		NODES		*/
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);

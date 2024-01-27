@@ -6,11 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 17:20:08 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 20:24:54 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 static long	ft_atol(const char *str)
 {
@@ -75,13 +75,13 @@ void	init_stack_a(t_stack_node **a, char **argv)
 
 	while (argv[i])
 	{
-		if (error_syntax(argv[i]))
-			free_errors(a);
+		if (syntax_error(argv[i]))
+			error_free(a);
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_errors(a);
-		if (error_duplicate(*a, (int)nbr))
-			free_errors(a); 
+			error_free(a);
+		if (duplicate_error(*a, (int)nbr))
+			error_free(a); 
 		append_node(a, (int)nbr);
 		i++;
 	}
