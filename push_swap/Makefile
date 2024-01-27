@@ -6,7 +6,7 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 18:35:41 by asalo             #+#    #+#              #
-#    Updated: 2024/01/27 20:37:14 by asalo            ###   ########.fr        #
+#    Updated: 2024/01/27 21:52:26 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,13 +35,15 @@ RM			= rm -f
 $(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-					
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT)
+$(NAME):	$(LIBFT) $(OBJS)
 			@ar -rcs $(NAME) $(OBJS)
-			@make -C /libft $(LIBFT)
+
+$(LIBFT):
+			@make -C $(LIBFT)
+
 clean:
 			$(RM) $(OBJS)
 			@$(RM) -r $(OBJS_DIR)
@@ -49,7 +51,8 @@ clean:
 
 fclean:		clean
 			$(RM) $(NAME)
+			@make fclean -C $(LIBFT)
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re $(LIBFT)
