@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 18:14:52 by asalo            ###   ########.fr       */
+/*   Updated: 2024/01/27 18:34:54 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "libft/incs/libft.h"/**/
-# include "libft/incs/ft_printf.h"/*to print outputs*/
-# include <stdbool.h>/*to use boolean datat type*/
+# include "libft/incs/ft_printf.h"/*ft_printf, split utils*/
+# include <stdbool.h>/*to use bool datat type*/
 # include <limits.h>/*to define MIN & MAX macros*/
 
 typedef struct s_stack_node
@@ -30,17 +30,22 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;/*pointer to the prev node*/
 }	t_stack_node;
 
-/*		ERROR & FREE		*/
+/*		ERROR		*/
 int				syntax_error(char *s);
 int				duplicate_error(t_stack_node *a, int nbr);
 void			free_stack(t_stack_node **stack);
 void			error_free(t_stack_node **stack);
 
-/*		INITIATE STACK		*/
+/*		STACK		*/
 void			init_stack_a(t_stack_node **a, char **argv);
 char			**split(char *s, char c);
+int				stack_len(t_stack_node *stack);
+bool			stack_asc_order(t_stack_node *stack);
+t_stack_node	*find_last(t_stack_node *stack);
+t_stack_node	*find_smallest(t_stack_node *stack);
+t_stack_node	*find_largest(t_stack_node *stack);
 
-/*		INITIATE NODES		*/
+/*		NODES		*/
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 void			init_nodes_b(t_stack_node *a, t_stack_node *b);
 void			current_index(t_stack_node *stack);
@@ -48,18 +53,11 @@ void			set_cheapest(t_stack_node *stack);
 void			prep_for_push(t_stack_node **stack, t_stack_node *top, char name);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 
-/*		 STACK UTILS		*/
-int				stack_len(t_stack_node *stack);
-bool			stack_asc_order(t_stack_node *stack);
-t_stack_node	*find_last(t_stack_node *stack);
-t_stack_node	*find_smallest(t_stack_node *stack);
-t_stack_node	*find_largest(t_stack_node *stack);
-
-/*		ALGORITHM			*/
+/*		ALGO		*/
 void			sort_stacks(t_stack_node **a, t_stack_node **b);
 void			sort_three(t_stack_node **a);
 
-/*		COMMANDS			*/
+/*		CMNDS		*/
 void			pa(t_stack_node **a, t_stack_node **b, bool checker);
 void			pb(t_stack_node **b, t_stack_node **a, bool checker);
 void			sa(t_stack_node **a, bool checker);
