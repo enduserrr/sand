@@ -6,7 +6,7 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:37:45 by asalo             #+#    #+#              #
-#    Updated: 2024/01/20 13:46:51 by asalo            ###   ########.fr        #
+#    Updated: 2024/02/07 12:33:08 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS		= $(DIR_SRCS)/is/ft_isalnum.c $(DIR_SRCS)/is/ft_isalpha.c \
 				$(DIR_SRCS)/is/ft_isascii.c $(DIR_SRCS)/is/ft_isdigit.c \
 				$(DIR_SRCS)/is/ft_isprint.c $(DIR_SRCS)/is/ft_isspace.c \
 				$(DIR_SRCS)/to/ft_atoi.c $(DIR_SRCS)/to/ft_itoa.c \
+				$(DIR_SRCS)/to/ft_atol.c \
 				$(DIR_SRCS)/to/ft_tolower.c $(DIR_SRCS)/to/ft_toupper.c \
 				$(DIR_SRCS)/mem/ft_bzero.c $(DIR_SRCS)/mem/ft_calloc.c \
 				$(DIR_SRCS)/mem/ft_memchr.c $(DIR_SRCS)/mem/ft_memcmp.c \
