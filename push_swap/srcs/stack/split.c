@@ -6,76 +6,83 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 20:27:04 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/07 12:02:30 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Change new_str function to be next_str and add static int to keep count of the position
-static size_t	str_count(char *s, char sep)
+static int	str_count(char *str, char separator)
 {
 	int		count;
-	bool	skip;
+	bool	inside_word;
 
 	count = 0;
-	skip = 0;
-	while (*s)
+	while (*str)
 	{
-		if (*s != sep && skip == 0)
+		inside_word = false;
+		while (*str == separator && *str)
+			++str;
+		while (*str != separator && *str)
 		{
-			skip = 1;
-			count++;
+			if (!inside_word)
+			{
+				++count;
+				inside_word = true;
+			}
+			++str;
 		}
-		else if (*s == sep)
-			skip = 0;
-		s++;
 	}
 	return (count);
 }
 
-static void	new_str(char **str, size_t *slen, char c)
+static char	*next_word(char *str, char separator)
 {
-	size_t	i;
+	static int	cursor = 0;
+	char		*next_str;
+	int			len;
+	int			i;
 
-	*str = *str + *slen;
-	*slen = 0;
+	len = 0;
 	i = 0;
-	while (**str && **str == c)
-		(*str)++;
-	while ((*str)[i])
-	{
-		if ((*str)[i] == c)
-			return ;
-		(*slen)++;
-		i++;
-	}
+	while (str[cursor] == separator)
+		++cursor;
+	while ((str[cursor + len] != separator) && str[cursor + len])
+		++len;
+	next_str = malloc((size_t)len * sizeof(char) + 1);
+	if (NULL == next_str)
+		return (NULL);
+	while ((str[cursor] != separator) && str[cursor])
+		next_str[i++] = str[cursor++];
+	next_str[i] = '\0';
+	return (next_str);
 }
-/*Mutable split (not static)*/
-char	**split(char *s, char c)
-{
-	char	**new_array;
-	char	*str;
-	size_t	slen;
-	size_t	i;
 
-	if (!s)
-		return (NULL);
-	new_array = ft_calloc((str_count(s, c) + 1), sizeof(char *));
-	if (!new_array)
-		return (NULL);
+char	**split(char *str, char separator)
+{
+	int		words_number;
+	char	**vector_strings;
+	int		i;
+
 	i = 0;
-	str = (char *)s;
-	slen = 0;
-	while (i < str_count(s, c))
+	words_number = str_count(str, separator);
+	if (!words_number)
+		exit(1);
+	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (NULL == vector_strings)
+		return (NULL);
+	while (words_number-- >= 0)
 	{
-		new_str(&str, &slen, c);
-		new_array[i] = ft_calloc((slen + 1), sizeof(char));
-		if (!new_array[i])
-			return (NULL);
-		ft_strlcpy(new_array[i], str, slen + 1);
-		i++;
+		if (0 == i)
+		{
+			vector_strings[i] = malloc(sizeof(char));
+			if (NULL == vector_strings[i])
+				return (NULL);
+			vector_strings[i++][0] = '\0';
+			continue ;
+		}
+		vector_strings[i++] = next_word(str, separator);
 	}
-	new_array[i] = NULL;
-	return (new_array);
+	vector_strings[i] = NULL;
+	return (vector_strings);
 }

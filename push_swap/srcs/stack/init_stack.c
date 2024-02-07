@@ -6,37 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 20:24:54 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/07 12:02:43 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static long	ft_atol(const char *str)
-{
-	int		i;
-	int		sign;
-	long	result;
-
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
-	while (ft_isdigit(str[i]))
-	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
-}
 
 /*Function to find and append the last node to a linked list*/
 static void	append_node(t_stack_node **stack, int nbr)
