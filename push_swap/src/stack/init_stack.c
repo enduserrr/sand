@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/07 12:02:43 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/08 12:09:15 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	{
 		if (syntax_error(argv[i]))
 			error_free(a);
-		nbr = ft_atol(argv[i]);
+		nbr = ft_atoi(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			error_free(a);
 		if (duplicate_error(*a, (int)nbr))
