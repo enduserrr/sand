@@ -6,55 +6,44 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:37:45 by asalo             #+#    #+#              #
-#    Updated: 2024/02/08 12:05:51 by asalo            ###   ########.fr        #
+#    Updated: 2024/02/08 12:45:20 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME	= libft.a
 
-DIR_SRCS	= srcs
-DIR_OBJS	= objs
-SUBDIRS		= is to mem str put lst gnl printf
+SRC_DIR	= src
+OBJ_DIR	= obj
+SUB_DIR	= is to mem str put lst gnl printf
 
-SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
-OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
-SRCS		= $(DIR_SRCS)/is/ft_isalnum.c $(DIR_SRCS)/is/ft_isalpha.c \
-				$(DIR_SRCS)/is/ft_isascii.c $(DIR_SRCS)/is/ft_isdigit.c \
-				$(DIR_SRCS)/is/ft_isprint.c $(DIR_SRCS)/is/ft_isspace.c \
-				$(DIR_SRCS)/to/ft_atoi.c $(DIR_SRCS)/to/ft_itoa.c \
-				$(DIR_SRCS)/to/ft_tolower.c $(DIR_SRCS)/to/ft_toupper.c \
-				$(DIR_SRCS)/mem/ft_bzero.c $(DIR_SRCS)/mem/ft_calloc.c \
-				$(DIR_SRCS)/mem/ft_memchr.c $(DIR_SRCS)/mem/ft_memcmp.c \
-				$(DIR_SRCS)/mem/ft_memcpy.c $(DIR_SRCS)/mem/ft_memmove.c \
-				$(DIR_SRCS)/mem/ft_memset.c \
-				$(DIR_SRCS)/put/ft_putchar_fd.c $(DIR_SRCS)/put/ft_putendl_fd.c \
-				$(DIR_SRCS)/put/ft_putnbr_fd.c $(DIR_SRCS)/put/ft_putstr_fd.c \
-				$(DIR_SRCS)/str/ft_split.c $(DIR_SRCS)/str/ft_strchr.c \
-				$(DIR_SRCS)/str/ft_strdup.c $(DIR_SRCS)/str/ft_striteri.c \
-				$(DIR_SRCS)/str/ft_strjoin.c $(DIR_SRCS)/str/ft_strlcat.c \
-				$(DIR_SRCS)/str/ft_strlcpy.c $(DIR_SRCS)/str/ft_strlen.c \
-				$(DIR_SRCS)/str/ft_strmapi.c $(DIR_SRCS)/str/ft_strncmp.c \
-				$(DIR_SRCS)/str/ft_strnstr.c $(DIR_SRCS)/str/ft_strrchr.c \
-				$(DIR_SRCS)/str/ft_strtrim.c $(DIR_SRCS)/str/ft_substr.c \
-				$(DIR_SRCS)/lst/ft_lstadd_back_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstadd_front_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstclear_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstdelone_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstiter_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstlast_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstnew_bonus.c \
-				$(DIR_SRCS)/lst/ft_lstsize_bonus.c \
-				$(DIR_SRCS)/gnl/get_next_line_utils.c \
-				$(DIR_SRCS)/gnl/get_next_line.c \
-				$(DIR_SRCS)/printf/ft_print_format.c $(DIR_SRCS)/printf/ft_printf.c
-OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
+SRCS	= $(addprefix $(SRC_DIR)/is/, ft_isalnum.c ft_isalpha.c \
+			ft_isascii.c ft_isdigit.c ft_isprint.c ft_isspace.c) \
+		$(addprefix $(SRC_DIR)/to/, ft_atoi.c ft_itoa.c ft_tolower.c \
+			ft_toupper.c) \
+		$(addprefix $(SRC_DIR)/mem/, ft_bzero.c ft_calloc.c ft_memchr.c \
+			ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c) \
+		$(addprefix $(SRC_DIR)/put/, ft_putchar_fd.c ft_putendl_fd.c \
+			ft_putnbr_fd.c ft_putstr_fd.c) \
+		$(addprefix $(SRC_DIR)/str/, ft_split.c ft_strchr.c ft_strdup.c \
+			ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c \
+			ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c \
+			ft_substr.c) \
+		$(addprefix $(SRC_DIR)/lst/, ft_lstadd_back_bonus.c \
+			ft_lstadd_front_bonus.c ft_lstclear_bonus.c ft_lstdelone_bonus.c \
+			ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstnew_bonus.c \
+			ft_lstsize_bonus.c) \
+		$(addprefix $(SRC_DIR)/gnl/, get_next_line_utils.c get_next_line.c) \
+		$(addprefix $(SRC_DIR)/printf/, ft_print_format.c ft_printf.c)
+
+OBJS_DIRS	= $(foreach dir, $(SUB_DIR), $(addprefix $(OBJ_DIR)/, $(dir)))
+OBJS		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
 INC			= -I incs/
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
-$(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
+$(OBJ_DIR)/%.o :	$(SRC_DIR)/%.c
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
@@ -65,7 +54,7 @@ $(NAME):	$(OBJS)
 
 clean:
 			$(RM) $(OBJS)
-			@$(RM) -r $(DIR_OBJS)
+			@$(RM) -r $(OBJ_DIR)
 
 fclean:		clean
 			$(RM) $(NAME)
