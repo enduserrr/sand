@@ -6,33 +6,30 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 18:35:41 by asalo             #+#    #+#              #
-#    Updated: 2024/01/27 21:52:26 by asalo            ###   ########.fr        #
+#    Updated: 2024/02/08 11:23:24 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap.a
 
-SRCS_DIR	= srcs
-OBJS_DIR	= objs
-SUBDIRS		= algo cmnds nodes stack
 LIBFT		= libft
-
-SRCS_RULE	= $(foreach dir, $(SUBDIRS), $(addprefix $(SRCS_DIR)/, $(dir)))
-OBJS_RULE	= $(foreach dir, $(SUBDIRS), $(addprefix $(OBJS_DIR)/, $(dir)))
-SRCS		= $(SRCS_DIR)/algo/turk_sort.c $(SRCS_DIR)/algo/sort_three.c \
-				$(SRCS_DIR)/cmnds/push.c $(SRCS_DIR)/cmnds/rev_rotate.c \
-				$(SRCS_DIR)/cmnds/rotate.c $(SRCS_DIR)/cmnds/swap.c \
-				$(SRCS_DIR)/nodes/a_to_b_init.c $(SRCS_DIR)/nodes/b_to_a_init.c \
-				$(SRCS_DIR)/stack/init_stack.c $(SRCS_DIR)/stack/split.c \
-				$(SRCS_DIR)/stack/stack_utils.c $(SRCS_DIR)/stack/error_free.c
-OBJS		= $(subst $(SRCS_DIR), $(OBJS_DIR), $(SRCS:.c=.o))
-
+SRC_DIR		= src
+OBJ_DIR		= obj
+SUB_DIR		= algo cmnds nodes stack
 INC			= -I incs
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
-$(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
+SRCS		= $(addprefix $(SRC_DIR)/algo/, turk_sort.c sort_three.c) \
+				$(addprefix $(SRC_DIR)/cmnds/, push.c rev_rotate.c rotate.c swap.c) \
+				$(addprefix $(SRC_DIR)/nodes/, a_to_b_init.c b_to_a_init.c) \
+				$(addprefix $(SRC_DIR)/stack/, init_stack.c split.c stack_utils.c error_free.c)
+				
+OBJ_RULE	= $(foreach dir, $(SUB_DIR), $(addprefix $(OBJ_DIR)/, $(dir)))
+OBJS		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
+
+$(OBJ_DIR)/%.o :	$(SRC_DIR)/%.c
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
@@ -46,7 +43,7 @@ $(LIBFT):
 
 clean:
 			$(RM) $(OBJS)
-			@$(RM) -r $(OBJS_DIR)
+			@$(RM) -r $(OBJ_DIR)
 			@make clean -C $(LIBFT)
 
 fclean:		clean
