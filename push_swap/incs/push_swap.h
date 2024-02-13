@@ -6,16 +6,17 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 20:20:24 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/13 13:41:38 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/incs/libft.h"
+# include "/Users/asalo/Desktop/enduserrr/a-sand/push_swap/libft/incs/libft.h"
 # include <stdbool.h>
 # include <limits.h>
+# include <unistd.h>
 
 typedef struct s_stack_node
 {
@@ -31,12 +32,13 @@ typedef struct s_stack_node
 
 /*		ERROR		*/
 int				syntax_error(char *s);
-int				duplicate_error(t_stack_node *a, int nbr);
+int				rep_error(t_stack_node *a, int nbr);
+void			free_matrix(char **argv);
 void			free_stack(t_stack_node **stack);
-void			error_free(t_stack_node **stack);
+void			error_free(t_stack_node **stack,char **argv, bool flag_argc_2);
 
 /*		STACK		*/
-void			init_stack_a(t_stack_node **a, char **argv);
+void			init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2);
 char			**split(char *s, char c);
 int				stack_len(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);

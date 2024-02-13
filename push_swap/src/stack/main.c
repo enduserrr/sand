@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/08 15:49:39 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/13 13:25:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argc == 2)
 		argv = split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
+	init_stack_a(&a, argv + 1, 2 == argc);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)

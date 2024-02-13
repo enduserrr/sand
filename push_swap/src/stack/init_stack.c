@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/08 12:09:15 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/13 13:41:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	append_node(t_stack_node **stack, int nbr)
 }
 
 /*Function to define stack a and check for any errors and to append nodes needed*/
-void	init_stack_a(t_stack_node **a, char **argv)
+void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	long	nbr;
 	int		i;
@@ -50,12 +50,12 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	while (argv[i])
 	{
 		if (syntax_error(argv[i]))
-			error_free(a);
+			error_free(a, argv, flag_argc_2);
 		nbr = ft_atoi(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a);
-		if (duplicate_error(*a, (int)nbr))
-			error_free(a); 
+			error_free(a, argv, flag_argc_2);
+		if (rep_error(*a, (int)nbr))
+			error_free(a, argv, flag_argc_2);
 		append_node(a, (int)nbr);
 		i++;
 	}
