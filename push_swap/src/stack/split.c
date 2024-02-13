@@ -6,11 +6,25 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/07 12:02:30 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/13 13:52:27 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static char	**free_array(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
+}
 
 static int	str_count(char *str, char separator)
 {
@@ -61,28 +75,28 @@ static char	*next_word(char *str, char separator)
 char	**split(char *str, char separator)
 {
 	int		words_number;
-	char	**vector_strings;
+	char	**new_strings;
 	int		i;
 
 	i = 0;
 	words_number = str_count(str, separator);
 	if (!words_number)
 		exit(1);
-	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
-	if (NULL == vector_strings)
+	new_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (NULL == new_strings)
 		return (NULL);
 	while (words_number-- >= 0)
 	{
 		if (0 == i)
 		{
-			vector_strings[i] = malloc(sizeof(char));
-			if (NULL == vector_strings[i])
-				return (NULL);
-			vector_strings[i++][0] = '\0';
+			new_strings[i] = malloc(sizeof(char));
+			if (!new_strings[i])
+				return (free_array(new_strings));
+			new_strings[i++][0] = '\0';
 			continue ;
 		}
-		vector_strings[i++] = next_word(str, separator);
+		new_strings[i++] = next_word(str, separator);
 	}
-	vector_strings[i] = NULL;
-	return (vector_strings);
+	new_strings[i] = NULL;
+	return (new_strings);
 }
