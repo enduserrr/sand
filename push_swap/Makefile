@@ -6,7 +6,7 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 18:35:41 by asalo             #+#    #+#              #
-#    Updated: 2024/02/13 12:37:49 by asalo            ###   ########.fr        #
+#    Updated: 2024/02/14 20:20:01 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,9 @@ NAME		= push_swap
 LIBFT		= ./libft/libft.a
 SRC_DIR		= src
 OBJ_DIR		= obj
-SUB_DIR		= algo cmnds nodes stack main
+SUB_DIR		= cmnds nodes stack
 
-SRCS		= $(addprefix $(SRC_DIR)/algo/, turk_sort.c sort_three.c) \
-				$(addprefix $(SRC_DIR)/cmnds/, push.c rev_rotate.c rotate.c swap.c) \
+SRCS		= $(addprefix $(SRC_DIR)/cmnds/, push.c rev_rotate.c rotate.c swap.c turk_sort.c sort_three.c) \
 				$(addprefix $(SRC_DIR)/nodes/, a_to_b_init.c b_to_a_init.c) \
 				$(addprefix $(SRC_DIR)/stack/, main.c init_stack.c split.c stack_utils.c error_free.c)
 

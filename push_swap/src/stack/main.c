@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/13 13:25:19 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:47:29 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,4 @@ int	main(int argc, char **argv)
 			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
-	return (0);
 }

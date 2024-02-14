@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/13 13:41:19 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/14 22:35:21 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	append_node(t_stack_node **stack, int nbr)
 	t_stack_node	*node;
 	t_stack_node	*last_node;
 
-	if (!stack)
+	if (stack == NULL)
 		return ;
 	node = malloc(sizeof(t_stack_node));
 	if (!node)
 		return ;
 	node->next = NULL;
 	node->n = nbr;
-	if (!(stack))
+	if (*stack == NULL)
 	{
 		*stack = node;
 		node->prev = NULL;
@@ -57,8 +57,10 @@ void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
 		if (rep_error(*a, (int)nbr))
 			error_free(a, argv, flag_argc_2);
 		append_node(a, (int)nbr);
-		i++;
+		++i;
 	}
+	if (flag_argc_2)
+		free_matrix(argv);
 }
 
 t_stack_node	*get_cheapest(t_stack_node *stack)

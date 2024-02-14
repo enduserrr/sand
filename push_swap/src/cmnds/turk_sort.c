@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 20:29:08 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:58:09 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // 		current_index(*b);
 // }
 
-static void	move_a_to_b(t_stack_node **a, t_stack_node **b)
+static void move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_n;
 

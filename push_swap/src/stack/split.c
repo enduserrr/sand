@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/13 13:52:27 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/14 20:31:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ static int	str_count(char *str, char separator)
 
 static char	*next_word(char *str, char separator)
 {
-	static int	cursor = 0;
+	static int	cursor;
 	char		*next_str;
 	int			len;
 	int			i;
 
+	cursor = 0;
 	len = 0;
 	i = 0;
 	while (str[cursor] == separator)
