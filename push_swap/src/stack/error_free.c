@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:27:07 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/14 19:37:26 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/15 11:02:23 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	error_free(t_stack_node **stack, char **argv, bool flag_argc_2)
 	exit(1);
 }
 
-int	syntax_error(char *s)
+int	error_syntax(char *s)
 {
 	if (!(*s == '+' || *s == '-' || (*s >= '0' && *s <= '9')))
 		return (1);
@@ -64,7 +64,7 @@ int	syntax_error(char *s)
 	return (0);
 }
 
-int	rep_error(t_stack_node *a, int nbr)
+int	error_repetition(t_stack_node *a, int nbr)
 {
 	if (!a)
 		return (0);

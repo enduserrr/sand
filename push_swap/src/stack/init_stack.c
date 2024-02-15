@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/14 22:41:18 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/15 10:55:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
 
 	while (argv[i])
 	{
-		if (syntax_error(argv[i]))
+		if (error_syntax(argv[i]))
 			error_free(a, argv, flag_argc_2);
 		nbr = ft_atoi(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			error_free(a, argv, flag_argc_2);
-		if (rep_error(*a, (int)nbr))
+		if (error_repetition(*a, (int)nbr))
 			error_free(a, argv, flag_argc_2);
 		append_node(a, (int)nbr);
 		++i;

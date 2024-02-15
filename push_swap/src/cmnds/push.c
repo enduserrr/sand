@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:03:30 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/14 21:59:20 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/15 11:04:20 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	pa(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	push(a, b);
 	if (!checker)
-		write(1, "pa\n", 3);
-		// ft_printf("pa\n");
+		ft_printf("pa\n");
 }
 
 /*Push the top of a to the top of b*/
@@ -50,6 +49,5 @@ void	pb(t_stack_node **b, t_stack_node **a, bool checker)
 {
 	push(b, a);
 	if (!checker)
-		write(1, "pb\n", 3);
-		// ft_printf("pb\n");
+		ft_printf("pb\n");
 }

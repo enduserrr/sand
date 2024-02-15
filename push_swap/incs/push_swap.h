@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/14 20:30:54 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/15 12:32:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_stack_node
 }	t_stack_node;
 
 /*		ERROR		*/
-int				syntax_error(char *s);
-int				rep_error(t_stack_node *a, int nbr);
+int				error_syntax(char *s);
+int				error_repetition(t_stack_node *a, int nbr);
 void			free_matrix(char **argv);
 void			free_stack(t_stack_node **stack);
 void			error_free(t_stack_node **stack,char **argv, bool flag_argc_2);
