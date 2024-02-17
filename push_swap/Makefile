@@ -6,7 +6,7 @@
 #    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 18:35:41 by asalo             #+#    #+#              #
-#    Updated: 2024/02/17 14:35:15 by asalo            ###   ########.fr        #
+#    Updated: 2024/02/17 15:01:44 by asalo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC_DIR		= src
 OBJ_DIR		= obj
 SUB_DIR		= cmnds nodes stack
 
-SRCS		= $(addprefix $(SRC_DIR)/sort/, p.c rr.c r.c s.c turk_sort.c sort_three.c) \
+SRCS		= $(addprefix $(SRC_DIR)/sort/, p.c rr.c r.c s.c sort.c) \
 				$(addprefix $(SRC_DIR)/init/, a_to_b_init.c b_to_a_init.c init_stack.c) \
 				$(addprefix $(SRC_DIR)/stack/, split.c stack_utils.c error_free.c) \
 				$(addprefix $(SRC_DIR)/, main.c)

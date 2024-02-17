@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/15 12:42:37 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/17 14:59:04 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,29 @@ static void	min_to_top(t_stack_node **a)
 	}
 }
 
-static void	handle_five(t_stack_node **a, t_stack_node **b)
+void	tiny_sort(t_stack_node **a, t_stack_node **b, int checker)
 {
-	while (stack_len(*a) > 3)
+	t_stack_node	*biggest_node;
+
+	biggest_node = 0;
+	if (checker == 3)
 	{
-		init_nodes_a(*a, *b);
-		min_to_top(a);
-		pb(b, a, false);
+		biggest_node = find_max(*a);
+		if (biggest_node == *a)
+			ra(a, false);
+		else if ((*a)->next == biggest_node)
+			rra(a, false);
+		if ((*a)->n > (*a)->next->n)
+			sa(a, false);
+	}
+	else if (checker == 5)
+	{
+		while (stack_len(*a) > 3)
+		{
+			init_nodes_a(*a, *b);
+			min_to_top(a);
+			pb(b, a, false);
+		}
 	}
 }
 
@@ -73,17 +89,17 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 
 	a_len = stack_len(*a);
 	if (a_len == 5)
-		handle_five(a, b);
+		tiny_sort(a, b, 5);
 	else
 	{
 		while (a_len-- > 3)
 			move_a_to_b(a, b);
 	}
-	sort_three(a);
+	tiny_sort(a, b, 3);
 	while (*b)
 	{
-		init_nodes_b(*a, *b); //Initiate all nodes from both stacks
-		move_b_to_a(a, b); //Move all `b` nodes back to a sorted stack `a`
+		init_nodes_b(*a, *b);
+		move_b_to_a(a, b);
 	}
 	current_index(*a);
 	min_to_top(a);

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/15 12:32:05 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/17 14:54:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_stack_node	*get_cheapest(t_stack_node *stack);
 
 /*		ALGO		*/
 void			sort_stacks(t_stack_node **a, t_stack_node **b);
-void			sort_three(t_stack_node **a);
+void			tiny_sort(t_stack_node **a, t_stack_node **b, int checker);
 
 /*		CMNDS		*/
 void			pa(t_stack_node **a, t_stack_node **b, bool checker);
