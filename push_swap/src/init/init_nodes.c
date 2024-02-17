@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_to_b_init.c                                      :+:      :+:    :+:   */
+/*   init_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:26:48 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 20:12:15 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/17 15:52:21 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	current_index(t_stack_node *stack)
 		i++;
 	}
 }
-static void	set_target_a(t_stack_node *a, t_stack_node *b)
+static void	set_target_node(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_b;
 	t_stack_node	*target_node;
@@ -52,14 +52,14 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)
 			current_b = current_b->next;
 		}
 		if (best_match_index == LONG_MIN)
-			a->target_node = find_max(b);
+			a->target_node = largest_value(b);
 		else
 			a->target_node = target_node;
 		a = a->next;
 	}
 }
 
-static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
+static void	set_price(t_stack_node *a, t_stack_node *b)
 {
 	int	a_len;
 	int	b_len;
@@ -94,11 +94,11 @@ void	set_cheapest(t_stack_node *stack)
 	}
 	cheapest_node->cheapest = true;
 }
-void	init_nodes_a(t_stack_node *a, t_stack_node *b)
+void	init_nodes(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);
-	set_target_a(a, b);
-	cost_analysis_a(a, b);
+	set_target_node(a, b);
+	set_price(a, b);
 	set_cheapest(b);
 }

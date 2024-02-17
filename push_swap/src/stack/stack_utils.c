@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 21:36:36 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/15 12:31:55 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/17 15:48:59 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ bool	stack_sorted(t_stack_node *stack)
 	return (stack);
 }
 
-/*Function to return a pointer to the node with the smallest number*/
-t_stack_node	*find_min(t_stack_node *stack)
+t_stack_node	*smallest_value(t_stack_node *stack)
 {
 	long			min;
 	t_stack_node	*node_ptr;
@@ -65,9 +64,14 @@ t_stack_node	*find_min(t_stack_node *stack)
 	}
 	return (node_ptr);
 }
-
-/*Function to return a pointer to the node with the largest number*/
-t_stack_node	*find_max(t_stack_node *stack)
+/*
+ * When i have 3 nodes, easy to sort
+ * 	~If the 1* is the biggest, ra (biggestto bottom)
+ * 	~If the 2* is the biggest, rra (biggest to bottom)
+ * 	~Now i have forcefully the Biggest at the bottom
+ * 		so i just chek 1° and 2°
+*/
+t_stack_node	*largest_value(t_stack_node *stack)
 {
 	long			max;
 	t_stack_node	*node_ptr;

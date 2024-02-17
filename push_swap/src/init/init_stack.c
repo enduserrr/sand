@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/15 10:55:42 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/17 15:34:18 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	append_node(t_stack_node **stack, int nbr)
 }
 
 /*Function to define stack a and check for any errors and to append nodes needed*/
-void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
+void	init_stack(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	long	nbr;
 	int		i;
@@ -63,7 +63,7 @@ void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
 		free_matrix(argv);
 }
 
-t_stack_node	*get_cheapest(t_stack_node *stack)
+t_stack_node	*show_cheapest(t_stack_node *stack)
 {
 	if (!stack)
 		return (NULL);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   turk_sort.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/17 14:59:04 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/17 15:51:28 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_n;
 
-	cheapest_n = get_cheapest(*b);
+	cheapest_n = show_cheapest(*b);
 	if (cheapest_n->above_median && cheapest_n ->target_node->above_median)
 	{
 		while (*b != cheapest_n->target_node && *a != cheapest_n)
@@ -48,9 +48,9 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 
 static void	min_to_top(t_stack_node **a)
 {
-	while ((*a)->n != find_min(*a)->n)
+	while ((*a)->n != smallest_value(*a)->n)
 	{
-		if (find_min(*a)->above_median)
+		if (smallest_value(*a)->above_median)
 			ra(a, false);
 		else
 			rra(a, false);
@@ -64,7 +64,7 @@ void	tiny_sort(t_stack_node **a, t_stack_node **b, int checker)
 	biggest_node = 0;
 	if (checker == 3)
 	{
-		biggest_node = find_max(*a);
+		biggest_node = largest_value(*a);
 		if (biggest_node == *a)
 			ra(a, false);
 		else if ((*a)->next == biggest_node)
@@ -76,7 +76,7 @@ void	tiny_sort(t_stack_node **a, t_stack_node **b, int checker)
 	{
 		while (stack_len(*a) > 3)
 		{
-			init_nodes_a(*a, *b);
+			init_nodes(*a, *b);
 			min_to_top(a);
 			pb(b, a, false);
 		}
@@ -98,7 +98,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 	tiny_sort(a, b, 3);
 	while (*b)
 	{
-		init_nodes_b(*a, *b);
+		init_nodes(*a, *b);
 		move_b_to_a(a, b);
 	}
 	current_index(*a);
