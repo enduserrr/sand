@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/17 16:00:17 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 12:53:56 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		if (stack_len(a) == 2)
 			sa(&a, false);
 		else if (stack_len(a) == 3)
-			tiny_sort(&a, &b, 3);
+			tiny_sort(&a, &b, false);
 		else
 			sort_stacks(&a, &b);
 	}

@@ -6,13 +6,12 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/17 15:34:18 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 12:58:21 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*Function to find and append the last node to a linked list*/
 static void	append_node(t_stack_node **stack, int nbr)
 {
 	t_stack_node	*node;
@@ -24,7 +23,7 @@ static void	append_node(t_stack_node **stack, int nbr)
 	if (!node)
 		return ;
 	node->next = NULL;
-	node->n = nbr;
+	node->value = nbr;
 	if (*stack == NULL)
 	{
 		*stack = node;
@@ -38,8 +37,7 @@ static void	append_node(t_stack_node **stack, int nbr)
 	}
 }
 
-/*Function to define stack a and check for any errors and to append nodes needed*/
-void	init_stack(t_stack_node **a, char **argv, bool flag_argc_2)
+void	init_stack(t_stack_node **a, char **argv, bool argc_is_2)
 {
 	long	nbr;
 	int		i;
@@ -50,16 +48,16 @@ void	init_stack(t_stack_node **a, char **argv, bool flag_argc_2)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			error_free(a, argv, flag_argc_2);
+			error_free(a, argv, argc_is_2);
 		nbr = ft_atoi(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a, argv, flag_argc_2);
+			error_free(a, argv, argc_is_2);
 		if (error_repetition(*a, (int)nbr))
-			error_free(a, argv, flag_argc_2);
+			error_free(a, argv, argc_is_2);
 		append_node(a, (int)nbr);
 		++i;
 	}
-	if (flag_argc_2)
+	if (argc_is_2)
 		free_matrix(argv);
 }
 
@@ -76,7 +74,6 @@ t_stack_node	*show_cheapest(t_stack_node *stack)
 	return (NULL);
 }
 
-/*Function that moves the required node to the top of the stack*/
 void	prep_for_push(t_stack_node **stack, t_stack_node *top, char name)
 {
 	while (*stack != top)

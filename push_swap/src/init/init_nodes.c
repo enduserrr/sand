@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:26:48 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/17 15:52:21 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 11:54:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 		current_b = b;
 		while (current_b)
 		{
-			if (current_b->n < a->n && current_b->n > best_match_index)
+			if (current_b->value < a->value && current_b->value > best_match_index)
 			{
-				best_match_index = current_b->n;
+				best_match_index = current_b->value;
 				target_node = current_b;
 			}
 			current_b = current_b->next;

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:27:07 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/15 11:02:23 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 12:58:38 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	error_free(t_stack_node **stack, char **argv, bool flag_argc_2)
+void	error_free(t_stack_node **stack, char **argv, bool argc_is_2)
 {
 	free_stack(stack);
-	if (flag_argc_2)
+	if (argc_is_2)
 		free_matrix(argv);
 	write(2, "Error\n", 6);
 	exit(1);
@@ -70,7 +70,7 @@ int	error_repetition(t_stack_node *a, int nbr)
 		return (0);
 	while (a)
 	{
-		if (a->n == nbr)
+		if (a->value == nbr)
 			return (1);
 		a = a->next;
 	}

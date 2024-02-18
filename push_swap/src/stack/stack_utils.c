@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 21:36:36 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/17 15:48:59 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 12:12:34 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ t_stack_node	*smallest_value(t_stack_node *stack)
 	node_ptr = NULL;
 	while (stack)
 	{
-		if (stack->n < min)
+		if (stack->value < min)
 		{
-			min = stack->n;
+			min = stack->value;
 			node_ptr = stack;
 		}
 		stack = stack->next;
@@ -80,9 +80,9 @@ t_stack_node	*largest_value(t_stack_node *stack)
 	node_ptr = NULL;
 	while (stack)
 	{
-		if (stack->n > max)
+		if (stack->value > max)
 		{
-			max = stack->n;
+			max = stack->value;
 			node_ptr = stack;
 		}
 		stack = stack->next;

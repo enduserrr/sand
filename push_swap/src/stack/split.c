@@ -6,25 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/14 20:31:05 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 12:46:41 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static char	**free_array(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
 
 static int	str_count(char *str, char separator)
 {
@@ -92,7 +78,7 @@ char	**split(char *str, char separator)
 		{
 			new_strings[i] = malloc(sizeof(char));
 			if (!new_strings[i])
-				return (free_array(new_strings));
+				return (NULL);
 			new_strings[i++][0] = '\0';
 			continue ;
 		}

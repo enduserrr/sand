@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/17 15:51:28 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/18 12:55:14 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 
 static void	min_to_top(t_stack_node **a)
 {
-	while ((*a)->n != smallest_value(*a)->n)
+	while ((*a)->value != smallest_value(*a)->value)
 	{
 		if (smallest_value(*a)->above_median)
 			ra(a, false);
@@ -57,22 +57,22 @@ static void	min_to_top(t_stack_node **a)
 	}
 }
 
-void	tiny_sort(t_stack_node **a, t_stack_node **b, int checker)
+void	tiny_sort(t_stack_node **a, t_stack_node **b, bool is_5_elems)
 {
 	t_stack_node	*biggest_node;
 
 	biggest_node = 0;
-	if (checker == 3)
+	if (is_5_elems)
 	{
 		biggest_node = largest_value(*a);
 		if (biggest_node == *a)
 			ra(a, false);
 		else if ((*a)->next == biggest_node)
 			rra(a, false);
-		if ((*a)->n > (*a)->next->n)
+		if ((*a)->value > (*a)->next->value)
 			sa(a, false);
 	}
-	else if (checker == 5)
+	else
 	{
 		while (stack_len(*a) > 3)
 		{
@@ -89,13 +89,13 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 
 	a_len = stack_len(*a);
 	if (a_len == 5)
-		tiny_sort(a, b, 5);
+		tiny_sort(a, b, true);
 	else
 	{
 		while (a_len-- > 3)
 			move_a_to_b(a, b);
 	}
-	tiny_sort(a, b, 3);
+	tiny_sort(a, b, false);
 	while (*b)
 	{
 		init_nodes(*a, *b);
