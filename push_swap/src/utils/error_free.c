@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:27:07 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/18 12:58:38 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/23 09:35:33 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_stack(t_stack_node **stack)
 	t_stack_node	*tmp;
 	t_stack_node	*current;
 
-	if (!stack)
+	if (NULL == stack)
 		return ;
 	current = *stack;
 	while (current)
@@ -41,24 +41,28 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	error_free(t_stack_node **stack, char **argv, bool argc_is_2)
+void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
 {
-	free_stack(stack);
-	if (argc_is_2)
+	free_stack(a);
+	if (flag_argc_2)
 		free_matrix(argv);
 	write(2, "Error\n", 6);
 	exit(1);
 }
 
-int	error_syntax(char *s)
+int	error_syntax(char *str_nbr)
 {
-	if (!(*s == '+' || *s == '-' || (*s >= '0' && *s <= '9')))
+	if (!(*str_nbr == '+'
+			|| *str_nbr == '-'
+			|| (*str_nbr >= '0' && *str_nbr <= '9')))
 		return (1);
-	if ((*s == '+' || *s == '-') && !(s[1] >= '0' && s[1] <= '9'))
+	if ((*str_nbr == '+'
+			|| *str_nbr == '-')
+		&& !(str_nbr[1] >= '0' && str_nbr[1] <= '9'))
 		return (1);
-	while (*++s)
+	while (*++str_nbr)
 	{
-		if (!(*s >= '0' && *s <= '9'))
+		if (!(*str_nbr >= '0' && *str_nbr <= '9'))
 			return (1);
 	}
 	return (0);
@@ -66,7 +70,7 @@ int	error_syntax(char *s)
 
 int	error_repetition(t_stack_node *a, int nbr)
 {
-	if (!a)
+	if (NULL == a)
 		return (0);
 	while (a)
 	{

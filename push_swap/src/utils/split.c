@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/18 12:46:41 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/23 14:30:26 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	str_count(char *str, char separator)
+static int	count_words(char *str, char separator)
 {
 	int		count;
 	bool	inside_word;
@@ -36,14 +36,13 @@ static int	str_count(char *str, char separator)
 	return (count);
 }
 
-static char	*next_word(char *str, char separator)
+static char	*get_next_word(char *str, char separator)
 {
-	static int	cursor;
+	static int	cursor = 0;
 	char		*next_str;
 	int			len;
 	int			i;
 
-	cursor = 0;
 	len = 0;
 	i = 0;
 	while (str[cursor] == separator)
@@ -62,28 +61,30 @@ static char	*next_word(char *str, char separator)
 char	**split(char *str, char separator)
 {
 	int		words_number;
-	char	**new_strings;
+	char	**vector_strings;
 	int		i;
 
 	i = 0;
-	words_number = str_count(str, separator);
+	words_number = count_words(str, separator);
 	if (!words_number)
 		exit(1);
-	new_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
-	if (NULL == new_strings)
+	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (NULL == vector_strings)
 		return (NULL);
 	while (words_number-- >= 0)
 	{
 		if (0 == i)
 		{
-			new_strings[i] = malloc(sizeof(char));
-			if (!new_strings[i])
+			vector_strings[i] = malloc(sizeof(char));
+			if (NULL == vector_strings[i])
 				return (NULL);
-			new_strings[i++][0] = '\0';
+			vector_strings[i++][0] = '\0';
 			continue ;
 		}
-		new_strings[i++] = next_word(str, separator);
+		vector_strings[i++] = get_next_word(str, separator);
 	}
-	new_strings[i] = NULL;
-	return (new_strings);
+	vector_strings[i] = NULL;
+	return (vector_strings);
 }
+/*"continue ;" is a jump statement, not a function, i.e.
+it is a part of standard C. Used to go back to the start of the loop.*/

@@ -6,91 +6,58 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/18 12:58:21 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/23 16:52:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	append_node(t_stack_node **stack, int nbr)
+static long	ft_atol(const char *str)
 {
-	t_stack_node	*node;
-	t_stack_node	*last_node;
+	long	num;
+	int		isneg;
+	int		i;
 
-	if (stack == NULL)
-		return ;
-	node = malloc(sizeof(t_stack_node));
-	if (!node)
-		return ;
-	node->next = NULL;
-	node->value = nbr;
-	if (*stack == NULL)
+	num = 0;
+	isneg = 1;
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\v' || str[i] == '\f'))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
 	{
-		*stack = node;
-		node->prev = NULL;
+		isneg *= -1;
+		i++;
 	}
-	else
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		last_node = find_last(*stack);
-		last_node->next = node;
-		node->prev = last_node;
+		num = (num * 10) + (str[i] - '0');
+		i++;
 	}
+	return (num * isneg);
 }
 
-void	init_stack(t_stack_node **a, char **argv, bool argc_is_2)
+void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	long	nbr;
 	int		i;
 
-	nbr = 0;
 	i = 0;
-
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			error_free(a, argv, argc_is_2);
-		nbr = ft_atoi(argv[i]);
+			error_free(a, argv, flag_argc_2);
+		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a, argv, argc_is_2);
+			error_free(a, argv, flag_argc_2);
 		if (error_repetition(*a, (int)nbr))
-			error_free(a, argv, argc_is_2);
+			error_free(a, argv, flag_argc_2);
 		append_node(a, (int)nbr);
 		++i;
 	}
-	if (argc_is_2)
+	if (flag_argc_2)
 		free_matrix(argv);
-}
-
-t_stack_node	*show_cheapest(t_stack_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack)
-	{
-		if (stack->cheapest)
-			return (stack);
-		stack = stack->next;
-	}
-	return (NULL);
-}
-
-void	prep_for_push(t_stack_node **stack, t_stack_node *top, char name)
-{
-	while (*stack != top)
-	{
-		if (name == 'a')
-		{
-			if (top->above_median)
-				ra(stack, false);
-			else
-				rra(stack, false);
-		}
-		else if (name == 'b')
-		{
-			if (top->above_median)
-				rb(stack, false);
-			else
-				rrb(stack, false);
-		}	
-	}
 }

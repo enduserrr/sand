@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:16:20 by asalo             #+#    #+#             */
-/*   Updated: 2024/01/27 20:12:09 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/23 09:38:21 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stack_node **stack)
+static void	swap(t_stack_node **head)
 {
-	if (!*stack || !(*stack)->next || stack_len(*stack) == 1)
+	int	len;
+
+	len = stack_len(*head);
+	if (NULL == *head || NULL == head || 1 == len)
 		return ;
-	*stack = (*stack)->next;
-	(*stack)->prev->prev = *stack;
-	(*stack)->prev->next = (*stack)->next;
-	if ((*stack)->next)
-		(*stack)->next->prev = (*stack)->prev;
-	(*stack)->next = (*stack)->prev;
-	(*stack)->prev = NULL;
+	*head = (*head)->next;
+	(*head)->prev->prev = *head;
+	(*head)->prev->next = (*head)->next;
+	if ((*head)->next)
+		(*head)->next->prev = (*head)->prev;
+	(*head)->next = (*head)->prev;
+	(*head)->prev = NULL;
 }
 
-void	sa(t_stack_node **a, bool checker)
+void	sa(t_stack_node	**a, bool checker)
 {
 	swap(a);
 	if (!checker)
-		ft_printf("sa\n");
+		write(1, "sa\n", 3);
 }
 
 void	sb(t_stack_node **b, bool checker)
 {
 	swap(b);
-		if (!checker)
-		ft_printf("sb\n");
+	if (!checker)
+		write(1, "sb\n", 3);
 }
 
 void	ss(t_stack_node **a, t_stack_node **b, bool checker)
@@ -44,5 +47,5 @@ void	ss(t_stack_node **a, t_stack_node **b, bool checker)
 	swap(a);
 	swap(b);
 	if (!checker)
-		ft_printf("ss\n");
+		write(1, "ss\n", 3);
 }

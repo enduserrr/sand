@@ -1,53 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   p.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:03:30 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/15 11:04:20 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/23 09:39:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_stack_node **dst, t_stack_node **src)
+static void	push(t_stack_node **dest, t_stack_node **src)
 {
-	t_stack_node	*push_ptr;
+	t_stack_node	*node_to_push;
 
-	if (!*src)
+	if (NULL == *src)
 		return ;
-	push_ptr = *src;
+	node_to_push = *src;
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
-	push_ptr->prev = NULL;
-	if (!*dst)
+	node_to_push->prev = NULL;
+	if (NULL == *dest)
 	{
-		*dst = push_ptr;
-		push_ptr->next = NULL;
+		*dest = node_to_push;
+		node_to_push->next = NULL;
 	}
 	else
 	{
-		push_ptr->next = *dst;
-		push_ptr->next->prev = push_ptr;
-		*dst = push_ptr;
+		node_to_push->next = *dest;
+		node_to_push->next->prev = node_to_push;
+		*dest = node_to_push;
 	}
 }
 
-/*Push the top of b to the top a*/
 void	pa(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	push(a, b);
 	if (!checker)
-		ft_printf("pa\n");
+		write(1, "pa\n", 3);
 }
 
-/*Push the top of a to the top of b*/
 void	pb(t_stack_node **b, t_stack_node **a, bool checker)
 {
 	push(b, a);
 	if (!checker)
-		ft_printf("pb\n");
+		write(1, "pb\n", 3);
 }
