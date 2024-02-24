@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 16:30:46 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/24 10:53:29 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ static void	handle_five(t_stack_node **a, t_stack_node **b)
 	}
 }
 
-// static void	min_to_top(t_stack_node **a)
-// {
-// 	t_stack_node	*smallest;
-
-// 	smallest = find_smallest(*a);
-// 	if (smallest->above_median)
-// 		while (*a != smallest)
-// 			ra(a, false);
-// 	else
-// 		while (*a != smallest)
-// 			rra(a, false);
-// }
 static void	rotate_both(t_stack_node **a,
 						t_stack_node **b,
 						t_stack_node *cheapest_node, bool checker)
@@ -124,26 +112,3 @@ void	sort(t_stack_node **a, t_stack_node **b)
 		while (*a != smallest)
 			rra(a, false);
 }
-
-// {
-// 	int	len_a;
-	
-// 	len_a = stack_len(*a);
-// 	if (len_a-- > 3 && !stack_sorted(*a))
-// 		pb(b, a, false);
-// 	if (len_a-- > 3 && !stack_sorted(*a))
-// 		pb(b, a, false);
-// 	while (len_a-- > 3 && !stack_sorted(*a))
-// 	{
-// 		init_nodes(*a, *b);
-// 		move_nodes(a, b);
-// 	}
-// 	tiny_sort(a);
-// 	while (*b)
-// 	{
-// 		init_nodes(*a, *b);
-// 		move_nodes(a, b);
-// 	}
-// 	set_current_position(*a);
-// 	min_to_top(a);
-// }
