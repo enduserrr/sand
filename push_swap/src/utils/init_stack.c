@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:10:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 16:52:05 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 12:46:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static long	ft_atol(const char *str)
 {
 	long	num;
-	int		isneg;
+	int		is_neg;
 	int		i;
 
 	num = 0;
-	isneg = 1;
+	is_neg = 1;
 	i = 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'
 			|| str[i] == '\n' || str[i] == '\r'
@@ -29,7 +29,7 @@ static long	ft_atol(const char *str)
 		i++;
 	else if (str[i] == '-')
 	{
-		isneg *= -1;
+		is_neg *= -1;
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
@@ -37,10 +37,10 @@ static long	ft_atol(const char *str)
 		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	return (num * isneg);
+	return (num * is_neg);
 }
 
-void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
+void	stack_init(t_stack_node **a, char **argv, bool argc_is_2)
 {
 	long	nbr;
 	int		i;
@@ -49,15 +49,22 @@ void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			error_free(a, argv, flag_argc_2);
+			error_free(a);
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a, argv, flag_argc_2);
+			error_free(a);
 		if (error_repetition(*a, (int)nbr))
-			error_free(a, argv, flag_argc_2);
+			error_free(a);
 		append_node(a, (int)nbr);
 		++i;
 	}
-	if (flag_argc_2)
-		free_matrix(argv);
+	if (argc_is_2)
+	{
+		i = -1;
+		if (NULL == argv || NULL == *argv)
+			return ;
+		while (argv[i])
+			free(argv[i++]);
+		free(argv - 1);
+	}
 }

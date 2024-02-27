@@ -6,22 +6,17 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:27:07 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 09:35:33 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:13:54 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_matrix(char **argv)
+void	error_free(t_stack_node **a)
 {
-	int	i;
-
-	i = -1;
-	if (NULL == argv || NULL == *argv)
-		return ;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv - 1);
+	free_stack(a);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
 void	free_stack(t_stack_node **stack)
@@ -29,25 +24,17 @@ void	free_stack(t_stack_node **stack)
 	t_stack_node	*tmp;
 	t_stack_node	*current;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return ;
 	current = *stack;
 	while (current)
 	{
 		tmp = current->next;
+		current->value = 0;
 		free(current);
 		current = tmp;
 	}
 	*stack = NULL;
-}
-
-void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
-{
-	free_stack(a);
-	if (flag_argc_2)
-		free_matrix(argv);
-	write(2, "Error\n", 6);
-	exit(1);
 }
 
 int	error_syntax(char *str_nbr)
@@ -70,7 +57,7 @@ int	error_syntax(char *str_nbr)
 
 int	error_repetition(t_stack_node *a, int nbr)
 {
-	if (NULL == a)
+	if (a == NULL)
 		return (0);
 	while (a)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tiny_sort.c                                        :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:51:11 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 16:16:36 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:10:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	stack_sorted(t_stack_node *stack)
 {
-	if (NULL == stack)
+	if (stack == NULL)
 		return (1);
 	while (stack->next)
 	{
@@ -30,7 +30,7 @@ static t_stack_node	*find_highest(t_stack_node *stack)
 	int				highest;
 	t_stack_node	*highest_node;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return (NULL);
 	highest = INT_MIN;
 	while (stack)
@@ -45,7 +45,7 @@ static t_stack_node	*find_highest(t_stack_node *stack)
 	return (highest_node);
 }
 
-void	mini_sort(t_stack_node **a)
+void	sort_three(t_stack_node **a)
 {
 	t_stack_node	*highest_node;
 

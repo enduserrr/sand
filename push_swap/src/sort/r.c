@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:17:19 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 09:39:09 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:07:24 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	rotate(t_stack_node **stack)
 	int				len;
 
 	len = stack_len(*stack);
-	if (NULL == stack || NULL == *stack || 1 == len)
+	if (stack == NULL || *stack == NULL || len == 1)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->next = *stack;
@@ -26,7 +26,7 @@ static void	rotate(t_stack_node **stack)
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
 	last_node->next->next = NULL;
-}	
+}
 
 void	ra(t_stack_node **a, bool checker)
 {

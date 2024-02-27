@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:18:24 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/24 10:53:29 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:10:29 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	rotate_both(t_stack_node **a,
 		set_current_position(*a);
 		set_current_position(*b);
 	}
-	
 }
 
 void	finish_rotation(t_stack_node **stack,
@@ -64,7 +63,7 @@ void	finish_rotation(t_stack_node **stack,
 				rb(stack, false);
 			else
 				rrb(stack, false);
-		}	
+		}
 	}
 }
 
@@ -86,29 +85,27 @@ static void	move_nodes(t_stack_node **a, t_stack_node **b)
 
 void	sort(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*smallest;
-	int				len_a;
+	int	a_len;
 
-	len_a = stack_len(*a);
-	if (len_a == 5)
+	a_len = stack_len(*a);
+	if (a_len == 5)
 		handle_five(a, b);
 	else
 	{
-		while (len_a-- > 3)
+		while (a_len-- > 3)
 			pb(b, a, false);
 	}
-	mini_sort(a);
+	sort_three(a);
 	while (*b)
 	{
 		init_nodes(*a, *b);
 		move_nodes(a, b);
 	}
 	set_current_position(*a);
-	smallest = find_smallest(*a);
-	if (smallest->above_median)
-		while (*a != smallest)
+	if (find_smallest(*a)->above_median)
+		while ((*a)->value != find_smallest(*a)->value)
 			ra(a, false);
 	else
-		while (*a != smallest)
+		while ((*a)->value != find_smallest(*a)->value)
 			rra(a, false);
 }

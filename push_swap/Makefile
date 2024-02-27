@@ -1,16 +1,13 @@
 NAME		= push_swap
 SRC_DIR		= src
 OBJ_DIR		= obj
-SUB_DIR		= init sort utils
+SUB_DIR		= sort utils
 
-SRCS		= $(addprefix $(SRC_DIR)/sort/, p.c rr.c r.c s.c sort.c mini_sort.c) \
-				$(addprefix $(SRC_DIR)/init/, init_nodes.c init_stack.c) \
-				$(addprefix $(SRC_DIR)/utils/, split.c stack_utils.c error_free.c) \
+SRCS		= $(addprefix $(SRC_DIR)/sort/, p.c rr.c r.c s.c sort.c sort_three.c) \
+				$(addprefix $(SRC_DIR)/utils/, split.c stack_utils.c error_free.c \
+				init_nodes.c init_stack.c) \
 				$(addprefix $(SRC_DIR)/, main.c)
-
-OBJ_PRE		= $(foreach dir, $(SUB_DIR), $(addprefix $(OBJ_DIR)/, $(dir)))
 OBJ			= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
-
 INC			= -I incs
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror

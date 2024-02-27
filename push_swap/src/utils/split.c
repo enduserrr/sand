@@ -6,37 +6,39 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 14:30:26 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/27 14:10:47 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	count_words(char *str, char separator)
+static int	count_words(char *str, char sep)
 {
 	int		count;
 	bool	inside_word;
 
 	count = 0;
+	inside_word = false;
 	while (*str)
 	{
-		inside_word = false;
-		while (*str == separator && *str)
-			++str;
-		while (*str != separator && *str)
+		if (*str != sep && inside_word == false)
 		{
-			if (!inside_word)
-			{
-				++count;
-				inside_word = true;
-			}
-			++str;
+			inside_word = true;
+			count++;
 		}
+		else if (*str == sep)
+			inside_word = false;
+		str++;
+	}
+	if (!count)
+	{
+		write(2, "Error\n", 6);
+		exit(1);
 	}
 	return (count);
 }
 
-static char	*get_next_word(char *str, char separator)
+static char	*get_next_word(char *str, char sep)
 {
 	static int	cursor = 0;
 	char		*next_str;
@@ -45,46 +47,46 @@ static char	*get_next_word(char *str, char separator)
 
 	len = 0;
 	i = 0;
-	while (str[cursor] == separator)
+	while (str[cursor] == sep)
 		++cursor;
-	while ((str[cursor + len] != separator) && str[cursor + len])
+	while ((str[cursor + len] != sep) && str[cursor + len])
 		++len;
 	next_str = malloc((size_t)len * sizeof(char) + 1);
 	if (NULL == next_str)
 		return (NULL);
-	while ((str[cursor] != separator) && str[cursor])
+	while ((str[cursor] != sep) && str[cursor])
 		next_str[i++] = str[cursor++];
 	next_str[i] = '\0';
 	return (next_str);
 }
 
-char	**split(char *str, char separator)
+char	**split(char *str, char sep)
 {
-	int		words_number;
-	char	**vector_strings;
+	char	**new;
+	int		w_count;
 	int		i;
 
 	i = 0;
-	words_number = count_words(str, separator);
-	if (!words_number)
+	w_count = count_words(str, sep);
+	if (!w_count)
 		exit(1);
-	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
-	if (NULL == vector_strings)
+	new = malloc(sizeof(char *) * (size_t)(w_count + 2));
+	if (new == NULL)
 		return (NULL);
-	while (words_number-- >= 0)
+	while (w_count-- >= 0)
 	{
 		if (0 == i)
 		{
-			vector_strings[i] = malloc(sizeof(char));
-			if (NULL == vector_strings[i])
+			new[i] = malloc(sizeof(char));
+			if (new[i] == NULL)
 				return (NULL);
-			vector_strings[i++][0] = '\0';
+			new[i++][0] = '\0';
 			continue ;
 		}
-		vector_strings[i++] = get_next_word(str, separator);
+		new[i++] = get_next_word(str, sep);
 	}
-	vector_strings[i] = NULL;
-	return (vector_strings);
+	new[i] = NULL;
+	return (new);
 }
 /*"continue ;" is a jump statement, not a function, i.e.
 it is a part of standard C. Used to go back to the start of the loop.*/

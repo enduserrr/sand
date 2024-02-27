@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:03:30 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 09:39:42 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 12:47:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*node_to_push;
 
-	if (NULL == *src)
+	if (*src == NULL)
 		return ;
 	node_to_push = *src;
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
 	node_to_push->prev = NULL;
-	if (NULL == *dest)
+	if (*dest == NULL)
 	{
 		*dest = node_to_push;
 		node_to_push->next = NULL;

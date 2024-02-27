@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:26:48 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 09:46:01 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:11:40 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	set_current_position(t_stack_node *stack)
 	int	centerline;
 
 	i = 0;
-	if (NULL == stack)
+	if (stack == NULL)
 		return ;
 	centerline = stack_len(stack) / 2;
 	while (stack)
 	{
-		stack->current_position = i;
+		stack->current_index = i;
 		if (i <= centerline)
 			stack->above_median = true;
 		else
@@ -71,13 +71,13 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 	len_b = stack_len(b);
 	while (b)
 	{
-		b->push_price = b->current_position;
+		b->push_cost = b->current_index;
 		if (!(b->above_median))
-			b->push_price = len_b - (b->current_position);
+			b->push_cost = len_b - (b->current_index);
 		if (b->target_node->above_median)
-			b->push_price += b->target_node->current_position;
+			b->push_cost += b->target_node->current_index;
 		else
-			b->push_price += len_a - (b->target_node->current_position);
+			b->push_cost += len_a - (b->target_node->current_index);
 		b = b->next;
 	}
 }
@@ -87,14 +87,14 @@ void	set_cheapest(t_stack_node *b)
 	long			best_match_value;
 	t_stack_node	*best_match_node;
 
-	if (NULL == b)
+	if (b == NULL)
 		return ;
 	best_match_value = LONG_MAX;
 	while (b)
 	{
-		if (b->push_price < best_match_value)
+		if (b->push_cost < best_match_value)
 		{
-			best_match_value = b->push_price;
+			best_match_value = b->push_cost;
 			best_match_node = b;
 		}
 		b = b->next;

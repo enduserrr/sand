@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:02:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 16:16:44 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/27 11:13:44 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (1 == argc || (2 == argc && !argv[1][0]))
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	{
+		write(2, "Error\n", 6);
 		return (1);
-	else if (2 == argc)
+	}
+	else if (argc == 2)
 		argv = split(argv[1], ' ');
-	stack_init(&a, argv + 1, 2 == argc);
+	stack_init(&a, argv + 1, argc == 2);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
 			sa(&a, false);
 		else if (stack_len(a) == 3)
-			mini_sort(&a);
+			sort_three(&a);
 		else
 			sort(&a, &b);
 	}

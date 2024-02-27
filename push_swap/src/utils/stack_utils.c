@@ -6,19 +6,19 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 21:36:36 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 09:33:41 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:12:03 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack_node	*find_last_node(t_stack_node *head)
+t_stack_node	*find_last_node(t_stack_node *stack)
 {
-	if (NULL == head)
+	if (stack == NULL)
 		return (NULL);
-	while (head->next)
-		head = head->next;
-	return (head);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }
 
 void	append_node(t_stack_node **stack, int nbr)
@@ -26,7 +26,7 @@ void	append_node(t_stack_node **stack, int nbr)
 	t_stack_node	*node;
 	t_stack_node	*last_node;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return ;
 	node = malloc(sizeof(t_stack_node));
 	if (NULL == node)
@@ -51,7 +51,7 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 	long			smallest;
 	t_stack_node	*smallest_node;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return (NULL);
 	smallest = LONG_MAX;
 	while (stack)
@@ -68,7 +68,7 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 
 t_stack_node	*return_cheapest(t_stack_node *stack)
 {
-	if (NULL == stack)
+	if (stack == NULL)
 		return (NULL);
 	while (stack)
 	{
@@ -83,7 +83,7 @@ int	stack_len(t_stack_node *stack)
 {
 	int	count;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return (0);
 	count = 0;
 	while (stack)

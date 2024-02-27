@@ -6,26 +6,26 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:16:20 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/23 09:38:21 by asalo            ###   ########.fr       */
+/*   Updated: 2024/02/26 13:08:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stack_node **head)
+static void	swap(t_stack_node **top)
 {
 	int	len;
 
-	len = stack_len(*head);
-	if (NULL == *head || NULL == head || 1 == len)
+	len = stack_len(*top);
+	if (*top == NULL || top == NULL || len == 1)
 		return ;
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-		(*head)->next->prev = (*head)->prev;
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
+	*top = (*top)->next;
+	(*top)->prev->prev = *top;
+	(*top)->prev->next = (*top)->next;
+	if ((*top)->next)
+		(*top)->next->prev = (*top)->prev;
+	(*top)->next = (*top)->prev;
+	(*top)->prev = NULL;
 }
 
 void	sa(t_stack_node	**a, bool checker)
