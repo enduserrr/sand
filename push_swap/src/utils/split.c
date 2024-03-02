@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:04:02 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/27 14:10:47 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/02 10:09:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	count_words(char *str, char sep)
 	return (count);
 }
 
-static char	*get_next_word(char *str, char sep)
+static char	*next_word(char *str, char sep)
 {
 	static int	cursor = 0;
 	char		*next_str;
@@ -69,7 +69,7 @@ char	**split(char *str, char sep)
 	i = 0;
 	w_count = count_words(str, sep);
 	if (!w_count)
-		exit(1);
+		exit (1);
 	new = malloc(sizeof(char *) * (size_t)(w_count + 2));
 	if (new == NULL)
 		return (NULL);
@@ -83,10 +83,8 @@ char	**split(char *str, char sep)
 			new[i++][0] = '\0';
 			continue ;
 		}
-		new[i++] = get_next_word(str, sep);
+		new[i++] = next_word(str, sep);
 	}
 	new[i] = NULL;
 	return (new);
 }
-/*"continue ;" is a jump statement, not a function, i.e.
-it is a part of standard C. Used to go back to the start of the loop.*/
