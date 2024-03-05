@@ -1,4 +1,4 @@
-## PUSH_SWAP
+# PUSH_SWAP
 
 ## ERROR CHECKLIST
 
@@ -17,24 +17,25 @@ Expected Behavior: Display nothing and give the prompt back. It should exit grac
 - General errors:
 Expected Behavior: Any other errors encountered during the execution of the program should be handled gracefully. The program should display "Error" followed by a '\n' on the standard error and exit without performing any sorting operations.
 
-## FUNCTIONS
+## ABOUT
 
-# NODES
+### LINKED LIST
 
-# MAIN
+### MAIN
 
-# SPLIT
-"continue ;" is a jump statement, not a function, i.e. it's standard C
-"continnue ;" is used to go back to the start of the loop.
+### SPLIT
+Not using const char as in the version done for libft project, therefor enabling the strings to be modified by split along the way. No memory freeing.Using "continue ;" which is a jump statement (standard C). used to go back to the start of the loop.
 
-# INIT STACK
+### STACK INITIATION
 
-# INIT NODES
+### NODE INITIATION
 
-# ERROR HANDLING
+### ERRORS
 
-# SORT
+### SORT & SORT_THREE
 
-# SORT_THREE
+### COMMANDS
 
-# COMMANDS
+## USEFULL RESOURCES
+- [Tester & visualiser](https://github.com/LeoFu9487/push_swap_tester)
+- [Extencive tester](https://github.com/gemartin99/Push-Swap-Tester)
