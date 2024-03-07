@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/07 10:25:47 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/07 10:54:46 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define FRACTOL_H
 
 # include <mlx.h>
+# include "../minilibx_opengl.tgz"
 
 #endif
