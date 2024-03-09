@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:43:35 by asalo             #+#    #+#             */
-/*   Updated: 2024/02/08 12:05:31 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/09 10:09:35 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*ft_itoa(int n);
 long	ft_atoi(const char *str);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+long	ft_atol(const char *str);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);

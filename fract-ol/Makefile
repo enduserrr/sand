@@ -1,11 +1,9 @@
 NAME		= fractol
 SRC_DIR		= src
 OBJ_DIR		= obj
-SUB_DIR		= utils else
 
-SRCS		= $(addprefix $(SRC_DIR)/utils/, file.c) \
-			$(addprefix $(SRC_DIR)/else/, file2.c) \
-			$(addprefix $(SRC_DIR)/, main.c)
+SRCS		= $(addprefix $(SRC_DIR)/, main.c draw.c init.c inputs.c \
+				julia.c mandelbrot.c utils.c)
 OBJS		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
 CC			= cc
