@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/09 11:08:08 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/09 12:02:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdlib.h> /*exit*/
 # include <stdio.h> /*perror*/
 # include <string.h> /*strerror*/
-# include "../minilibx_opengl.tgz"
 
 # define SIZE 700
 # define THREAD_WIDTH 7
