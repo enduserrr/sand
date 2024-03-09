@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/09 10:02:15 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/09 11:08:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include <mlx.h>
 # include <math.h>
-# include <unistd.h>
+# include <unistd.h> /*write*/
 # include <pthread.h>
+# include <stdlib.h> /*exit*/
+# include <stdio.h> /*perror*/
+# include <string.h> /*strerror*/
 # include "../minilibx_opengl.tgz"
 
 # define SIZE 700
@@ -63,33 +66,24 @@ typedef struct s_fractal
 	int		max_iterations;
 }			t_fractal;
 
-// utils.c
 void		put_color_to_pixel(t_fractal *fractal, int x, int y, int colour);
-int			exit_fractal(t_fractal *fractal);
+int			exit_free(t_fractal *fractal);
 double		generate_random_c(void);
 void		change_iterations(t_fractal *fractal, int key_code);
 
-// init.c
 void		init_fractal(t_fractal *fractal);
 void		init_mlx(t_fractal *fractal);
 
-// mandelbrot.c
-void		calculate_mandelbrot(t_fractal *fractal);
+// void		calculate_mandelbrot(t_fractal *fractal);
+// void		calculate_julia(t_fractal *fractal);
 
-// julia.c
-void		calculate_julia(t_fractal *fractal);
-
-// burning_ship.c
 void		calculate_burning_ship(t_fractal *fractal);
 
-// main.c
-int			draw_fractal(t_fractal *fractal, char *query);
+int			draw_fractal(t_fractal *fractal, char option);
 
-// mouse_and_keys.c
 int			key_hook(int key_code, t_fractal *fractal);
 int			mouse_hook(int mouse_code, int x, int y, t_fractal *fractal);
 
-// draw.c
 void		*draw_mandelbrot(void *fractal_void);
 void		draw_julia(t_fractal *fractal);
 void		draw_burning_ship(t_fractal *fractal);
