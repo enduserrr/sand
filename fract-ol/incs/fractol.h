@@ -6,14 +6,14 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/09 12:02:19 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/10 12:55:58 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <unistd.h> /*write*/
 # include <pthread.h>
@@ -72,13 +72,9 @@ void		change_iterations(t_fractal *fractal, int key_code);
 
 void		init_fractal(t_fractal *fractal);
 void		init_mlx(t_fractal *fractal);
+int			compare(const char *s1, const char *s2);
 
-// void		calculate_mandelbrot(t_fractal *fractal);
-// void		calculate_julia(t_fractal *fractal);
-
-void		calculate_burning_ship(t_fractal *fractal);
-
-int			draw_fractal(t_fractal *fractal, char option);
+int			draw_fractal(t_fractal *fractal, char *option);
 
 int			key_hook(int key_code, t_fractal *fractal);
 int			mouse_hook(int mouse_code, int x, int y, t_fractal *fractal);

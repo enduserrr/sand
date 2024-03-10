@@ -1,25 +1,24 @@
-NAME		= fractol
-SRC_DIR		= src
-OBJ_DIR		= obj
+NAME 	= fractol
+SRC_DIR	= src
+OBJ_DIR	= obj
 
-SRCS		= $(addprefix $(SRC_DIR)/, main.c draw.c init.c inputs.c \
-				julia.c mandelbrot.c utils.c)
-OBJS		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
-
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-INC			= -I incs
-RM			= rm -r
+SRCS	= $(addprefix $(SRC_DIR)/bin/, draw.c init.c inputs.c \
+			julia.c mandelbrot.c utils.c) \
+			$(addprefix $(SRC_DIR)/, main.c)
+OBJ		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
+INC		= -I incs
+CC		= cc
+CFLAGS	= -Wall -Werror -Wextra
+RM		= rm -f
 
 $(OBJ_DIR)/%.o :	$(SRC_DIR)/%.c
 				@mkdir -p $(dir $@)
-				@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+				@$(CC) $(CFLAGS) $(INC) -Imlx -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			@$(CC) $(OBJ) -o $(NAME)
-
+			@$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 clean:
 			$(RM) $(OBJ)
 			$(RM) -r $(OBJ_DIR)
@@ -28,5 +27,3 @@ fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
-
-.PHONY:		all clean fclean re

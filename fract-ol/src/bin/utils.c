@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:10:10 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/09 11:10:44 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/10 12:50:08 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	compare(const char *s1, const char *s2)
+int	compare(const char *s1, const char *s2)
 {
 	size_t	i;
 
