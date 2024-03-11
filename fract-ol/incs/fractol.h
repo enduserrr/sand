@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/10 12:55:58 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/11 10:23:31 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define FRACTOL_H
 
 # include "../mlx/mlx.h"
-# include <math.h>
-# include <unistd.h> /*write*/
-# include <pthread.h>
+# include "../libft/incs/libft.h" /*strcompare, printf*/
+# include <math.h> /*math?*/
+# include <pthread.h> /*hyperthreading?*/
 # include <stdlib.h> /*exit*/
 # include <stdio.h> /*perror*/
 # include <string.h> /*strerror*/
@@ -66,13 +66,12 @@ typedef struct s_fractal
 }			t_fractal;
 
 void		put_color_to_pixel(t_fractal *fractal, int x, int y, int colour);
-int			exit_free(t_fractal *fractal);
+int			clean_exit(t_fractal *fractal);
 double		generate_random_c(void);
 void		change_iterations(t_fractal *fractal, int key_code);
 
 void		init_fractal(t_fractal *fractal);
 void		init_mlx(t_fractal *fractal);
-int			compare(const char *s1, const char *s2);
 
 int			draw_fractal(t_fractal *fractal, char *option);
 

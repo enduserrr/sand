@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:10:50 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/09 11:04:58 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/11 10:39:36 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ void	init_fractal(t_fractal *fractal)
 	fractal->max_iterations = 42;
 }
 
-/**
- * @brief    Initializes the MiniLibX variables.
- *
- * @param    fractal
- */
 void	init_mlx(t_fractal *fractal)
 {
 	fractal->mlx = mlx_init();
