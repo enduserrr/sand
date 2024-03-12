@@ -1,7 +1,3 @@
-<link href="style. css" rel="md_style"></link>
-<a class="top-link hide" href="#top">↑</a>
-<a name="top"></a>
-
 # PROJECT TITLE
 
 - [SCOPE](#scope)
