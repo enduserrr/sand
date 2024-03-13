@@ -4,7 +4,7 @@ OBJ_DIR		= obj
 LIBFT		= ./libft/libft.a
 
 SRCS		= $(addprefix $(SRC_DIR)/, draw.c init.c inputs.c \
-				utils.c) \
+				utils.c color.c) \
 			$(addprefix $(SRC_DIR)/, main.c)
 OBJ			= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 

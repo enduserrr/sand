@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:11:58 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/11 10:23:57 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/13 11:03:21 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	draw_fractal(t_fractal *fractal, char *option)
 	}
 	else
 	{
-		write(1, "Available fractals: mandel, julia\n", 38);
+		ft_printf("available fractals: mandel, julia\n");
 		clean_exit(fractal);
 	}
 	mlx_put_image_to_window(fractal->mlx, fractal->window, fractal->image, 0,

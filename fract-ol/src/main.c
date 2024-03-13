@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:46:21 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/11 10:12:36 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/13 11:03:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int	main(int argc, char **argv)
 {
-	t_fractal	*fractal;
+	t_fractal			*fractal;
+	static t_fractal	fractal_instance;
 
+	fractal = &fractal_instance;
 	if (argc < 2 || !argv[1][0])
 	{
-		ft_printf("%s\n", "Error: missing argument (./fractol <fractal_name>)");
-		ft_printf("%s\n", "Available fractals: mandel, julia");
-		return (-1);
+		ft_printf("%s\n", "error: missing argument");
+		exit(1);
 	}
-	fractal = malloc(sizeof(t_fractal));
+	check_input(argv[1]);
 	init_fractal(fractal);
 	init_mlx(fractal);
 	mlx_key_hook(fractal->window, key_hook, fractal);
@@ -30,6 +31,5 @@ int	main(int argc, char **argv)
 	mlx_hook(fractal->window, 17, 0L, clean_exit, fractal);
 	draw_fractal(fractal, argv[1]);
 	mlx_loop(fractal->mlx);
-	return (0);
-	
+	return (0);	
 }

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/11 10:23:31 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/13 10:55:25 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@
 # include <stdio.h> /*perror*/
 # include <string.h> /*strerror*/
 
-# define SIZE 700
+# define SIZE 1250
 # define THREAD_WIDTH 7
 # define THREAD_NUMBER 100
 
 // KEYCODES
-# define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
 # define UP 126
 # define DOWN 125
 # define LEFT 123
@@ -37,6 +40,7 @@
 # define J 38
 # define P 35
 # define M 46
+# define ESC 53
 
 // MOUSECODES
 # define SCROLL_UP 4
@@ -65,21 +69,20 @@ typedef struct s_fractal
 	int		max_iterations;
 }			t_fractal;
 
-void		put_color_to_pixel(t_fractal *fractal, int x, int y, int colour);
+void		check_input(char *option);
 int			clean_exit(t_fractal *fractal);
-double		generate_random_c(void);
 void		change_iterations(t_fractal *fractal, int key_code);
 
 void		init_fractal(t_fractal *fractal);
 void		init_mlx(t_fractal *fractal);
 
 int			draw_fractal(t_fractal *fractal, char *option);
+void		put_color_to_pixel(t_fractal *fractal, int x, int y, int colour);
 
 int			key_hook(int key_code, t_fractal *fractal);
 int			mouse_hook(int mouse_code, int x, int y, t_fractal *fractal);
 
 void		*draw_mandelbrot(void *fractal_void);
 void		draw_julia(t_fractal *fractal);
-void		draw_burning_ship(t_fractal *fractal);
 
 #endif

@@ -6,32 +6,28 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:10:10 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/11 10:39:47 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/13 11:05:12 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_color_to_pixel(t_fractal *fractal, int x, int y, int color)
+void	check_input(char *option)
 {
-	int	*buffer;
-
-	buffer = fractal->pointer_to_image;
-	buffer[(y * fractal->size_line / 4) + x] = color;
+	if (ft_strcmp(option, "mandel") != 0 
+		&& ft_strcmp(option, "julia") != 0)
+		{
+			ft_printf("%s", "error: incorrect argument ");
+			ft_printf("%s\n", "(available fractals: mandel, julia).");
+			exit (1);
+		}
 }
 
 int	clean_exit(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx, fractal->image);
 	mlx_destroy_window(fractal->mlx, fractal->window);
-	free(fractal->mlx);
-	free(fractal);
 	exit(0);
-}
-
-double	generate_random_c(void)
-{
-	return (((double)rand() / RAND_MAX) * 3.0 - 1.5);
 }
 
 void	change_iterations(t_fractal *fractal, int key_code)

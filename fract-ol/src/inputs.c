@@ -6,13 +6,18 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:14:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/11 10:39:54 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/13 10:51:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	set_random_julia(double *cx, double *cy)
+static double	generate_random_c(void)
+{
+	return (((double)rand() / RAND_MAX) * 3.0 - 1.5);
+}
+
+static void	set_random_julia(double *cx, double *cy)
 {
 	*cx = generate_random_c();
 	*cy = generate_random_c();
