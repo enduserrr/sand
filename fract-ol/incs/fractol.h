@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 09:36:43 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/14 09:51:21 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include <stdio.h> /*perror*/
 # include <string.h> /*strerror*/
 
-# define SIZE 1250
+# define WIDTH 800
+# define HIGHT 800 
 # define THREAD_WIDTH 7
 # define THREAD_NUMBER 100
 

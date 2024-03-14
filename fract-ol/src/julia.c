@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:39:16 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 09:41:53 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/14 10:07:35 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,16 @@ void	calculate_julia(t_fractal *fractal)
 	if (i == fractal->max_iterations)
 		put_color_to_pixel(fractal, fractal->x, fractal->y, 0xFFFFFF);
 	else
-		put_color_to_pixel(fractal, fractal->x, fractal->y, (fractal->color * (i
-					% 255)));
+		put_color_to_pixel(fractal, fractal->x, fractal->y, (fractal->color * i));
 }
 
 void	draw_julia(t_fractal *fractal)
 {
 	fractal->x = 0;
 	fractal->y = 0;
-	while (fractal->x < SIZE)
+	while (fractal->x < WIDTH)
 	{
-		while (fractal->y < SIZE)
+		while (fractal->y < HIGHT)
 		{
 			calculate_julia(fractal);
 			fractal->y++;

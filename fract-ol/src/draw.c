@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 09:29:17 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 09:41:48 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/14 09:44:09 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,42 +19,6 @@ void	put_color_to_pixel(t_fractal *fractal, int x, int y, int color)
 	buffer = fractal->pointer_to_image;
 	buffer[(y * fractal->size_line / 4) + x] = color;
 }
-
-// void	*draw_mandelbrot(void *fractal_void)
-// {
-// 	t_fractal	*fractal;
-
-// 	fractal = (t_fractal *)fractal_void;
-// 	fractal->x = 0;
-// 	fractal->y = 0;
-// 	while (fractal->x < SIZE)
-// 	{
-// 		while (fractal->y < SIZE)
-// 		{
-// 			calculate_mandelbrot(fractal);
-// 			fractal->y++;
-// 		}
-// 		fractal->x++;
-// 		fractal->y = 0;
-// 	}
-// 	return (NULL);
-// }
-
-// void	draw_julia(t_fractal *fractal)
-// {
-// 	fractal->x = 0;
-// 	fractal->y = 0;
-// 	while (fractal->x < SIZE)
-// 	{
-// 		while (fractal->y < SIZE)
-// 		{
-// 			calculate_julia(fractal);
-// 			fractal->y++;
-// 		}
-// 		fractal->x++;
-// 		fractal->y = 0;
-// 	}
-// }
 
 int	draw_fractal(t_fractal *fractal, char *option)
 {
