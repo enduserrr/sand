@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:20:41 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/13 10:55:25 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/14 09:36:43 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,12 @@ void		change_iterations(t_fractal *fractal, int key_code);
 void		init_fractal(t_fractal *fractal);
 void		init_mlx(t_fractal *fractal);
 
+void		calculate_mandelbrot(t_fractal *fractal);
+void		calculate_julia(t_fractal *fractal);
 int			draw_fractal(t_fractal *fractal, char *option);
 void		put_color_to_pixel(t_fractal *fractal, int x, int y, int colour);
+void		*draw_mandelbrot(void *fractal_void);
+void		draw_julia(t_fractal *fractal);
 
 int			key_hook(int key_code, t_fractal *fractal);
 int			mouse_hook(int mouse_code, int x, int y, t_fractal *fractal);
