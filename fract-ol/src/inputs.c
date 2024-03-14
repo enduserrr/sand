@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:14:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/13 10:51:19 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:49:34 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	zoom(t_fractal *fractal, int x, int y, int zoom)
 		return ;
 }
 
-
 int	key_hook(int key_code, t_fractal *fractal)
 {
 	if (key_code == ESC)
@@ -72,6 +71,7 @@ int	key_hook(int key_code, t_fractal *fractal)
 	draw_fractal(fractal, fractal->name);
 	return (0);
 }
+
 
 int	mouse_hook(int mouse_code, int x, int y, t_fractal *fractal)
 {
