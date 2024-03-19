@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inputs.c                                           :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:14:56 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 12:49:34 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/19 14:01:51 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-
-static double	generate_random_c(void)
-{
-	return (((double)rand() / RAND_MAX) * 3.0 - 1.5);
-}
-
-static void	set_random_julia(double *cx, double *cy)
-{
-	*cx = generate_random_c();
-	*cy = generate_random_c();
-}
+#include "../incs/fractol.h"
 
 void	zoom(t_fractal *fractal, int x, int y, int zoom)
 {
@@ -48,30 +37,45 @@ void	zoom(t_fractal *fractal, int x, int y, int zoom)
 		return ;
 }
 
+static void	increment_julia(double *cx, double *cy, int opt)
+{
+	if (opt == 0)
+	{
+		*cx = *cx * 1.03;
+		*cy = *cy * 1.03;
+	}
+	if (opt == 1)
+	{
+		*cx = *cx * 0.97;
+		*cy = *cy * 0.97;
+	}
+}
+
 int	key_hook(int key_code, t_fractal *fractal)
 {
 	if (key_code == ESC)
 		clean_exit(fractal);
-	else if (key_code == LEFT)
+	else if (key_code == LEFT || key_code == A)
 		fractal->offset_x -= 42 / fractal->zoom;
-	else if (key_code == RIGHT)
+	else if (key_code == RIGHT || key_code == D)
 		fractal->offset_x += 42 / fractal->zoom;
-	else if (key_code == UP)
+	else if (key_code == UP || key_code == W)
 		fractal->offset_y -= 42 / fractal->zoom;
-	else if (key_code == DOWN)
+	else if (key_code == DOWN || key_code == S)
 		fractal->offset_y += 42 / fractal->zoom;
 	else if (key_code == R)
-		init_fractal(fractal);
+		init_fractal(fractal, fractal->name);
+	else if (key_code == LEFT_SHIFT)
+		increment_julia(&fractal->cx, &fractal->cx, 0);
+	else if (key_code == LEFT_CTRL)
+		increment_julia(&fractal->cx, &fractal->cx, 1);
 	else if (key_code == C)
 		fractal->color += (255 * 255 * 255) / 100;
-	else if (key_code == J)
-		set_random_julia(&fractal->cx, &fractal->cx);
 	else if (key_code == M || key_code == P)
 		change_iterations(fractal, key_code);
 	draw_fractal(fractal, fractal->name);
 	return (0);
 }
-
 
 int	mouse_hook(int mouse_code, int x, int y, t_fractal *fractal)
 {

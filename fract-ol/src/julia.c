@@ -6,18 +6,17 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:39:16 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 19:33:20 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/19 13:55:40 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../incs/fractol.h"
 
 void	calculate_julia(t_fractal *fractal)
 {
 	int		i;
 	double	tmp;
 
-	fractal->name = "julia";
 	fractal->zx = fractal->x / fractal->zoom + fractal->offset_x;
 	fractal->zy = fractal->y / fractal->zoom + fractal->offset_y;
 	i = 0;
@@ -32,16 +31,15 @@ void	calculate_julia(t_fractal *fractal)
 			break ;
 	}
 	if (i == fractal->max_iterations)
-		put_color_to_pixel(fractal, fractal->x, fractal->y, 0xFFFFFF);
+		color_pixel(fractal, fractal->x, fractal->y, 0xFFFFFF);
 	else
-		put_color_to_pixel(fractal, fractal->x, fractal->y, (fractal->color * i));
+		color_pixel(fractal, fractal->x, fractal->y, (fractal->color * i));
 }
 
 void	draw_julia(t_fractal *fractal)
 {
 	fractal->x = 0;
 	fractal->y = 0;
-	
 	while (fractal->x < WIDTH)
 	{
 		while (fractal->y < HIGHT)

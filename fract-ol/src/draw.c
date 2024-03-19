@@ -6,13 +6,13 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 09:29:17 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 18:58:52 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/19 09:15:24 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../incs/fractol.h"
 
-void	put_color_to_pixel(t_fractal *fractal, int x, int y, int color)
+void	color_pixel(t_fractal *fractal, int x, int y, int color)
 {
 	int	*buffer;
 
@@ -35,27 +35,9 @@ int	draw_fractal(t_fractal *fractal, char *option)
 	}
 	else
 	{
-		ft_printf("available fractals: mandel, julia\n");
 		clean_exit(fractal);
 	}
 	mlx_put_image_to_window(fractal->mlx, fractal->window, fractal->image, 0,
 		0);
 	return (0);
-}
-
-void draw_fractal_section(t_fractal *fractal, int x, int y, int end_x, int end_y)
-{
-	if (x >= end_x && y >= end_y)
-	{
-		return ;
-	}
-	fractal->x = x;
-	fractal->y = y;
-	calculate_julia(fractal);
-	mlx_put_image_to_window(fractal->mlx, fractal->window, fractal->image, 0,
-		0);
-	if (x + 1 >= end_x) 
-		draw_fractal_section(fractal, 0, + 1, end_x, end_y);
-	else
-		draw_fractal_section(fractal, x + 1, y, end_x, end_y);
 }

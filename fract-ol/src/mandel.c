@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:11:58 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/14 09:54:07 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/19 13:55:31 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	calculate_mandelbrot(t_fractal *fractal)
 	int		i;
 	double	tmp;
 
-	fractal->name = "mandel";
 	i = 0;
 	fractal->zx = 0.0;
 	fractal->zy = 0.0;
@@ -34,17 +33,14 @@ void	calculate_mandelbrot(t_fractal *fractal)
 			break ;
 	}
 	if (i == fractal->max_iterations)
-		put_color_to_pixel(fractal, fractal->x, fractal->y, 0xFFFFFF);
+		color_pixel(fractal, fractal->x, fractal->y, 0xFFFFFF);
 	else
-		put_color_to_pixel(fractal, fractal->x, fractal->y, (fractal->color
+		color_pixel(fractal, fractal->x, fractal->y, (fractal->color
 				* i));
 }
 
-void	*draw_mandelbrot(void *fractal_void)
+void	draw_mandelbrot(t_fractal *fractal)
 {
-	t_fractal	*fractal;
-
-	fractal = (t_fractal *)fractal_void;
 	fractal->x = 0;
 	fractal->y = 0;
 	while (fractal->x < WIDTH)
@@ -57,5 +53,4 @@ void	*draw_mandelbrot(void *fractal_void)
 		fractal->x++;
 		fractal->y = 0;
 	}
-	return (NULL);
 }
