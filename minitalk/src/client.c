@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:36:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/22 10:10:27 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:09:37 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/minitalk.h"
+#include "../incs/minitalk.h"
 
-void	error_exit(void)
+/**
+ * @brief	The function 'sleep()' and 'usleep()' both hault the program
+ * 			execution process for a specified time.
+ * 			- 'sleep(0)' deals in seconds
+ * 			- 'usleep(0,000,000)' deals in microseconds
+*/
+
+void	bit_sender(int pid, char i)
 {
-	write(2, "Error: incorrect input\n",23);
-	exit (1);
+	int	bit;
+
+	bit = 0;;
+	while (bit < 8)
+	{
+		if ((i & (0x01 << bit)) != 0)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(100);
+		bit++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -25,27 +42,16 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	if (argc != 3)
-		error_exit();
+		error_exit(CLIENT_INPUT);
 	while (i < argc)
 	{
-		ft_atol(argv[i]);
-		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i] < INT_MIN))
-			error_exit();
+		pid = ft_atol(argv[i]);
+		if (pid > INT_MAX || pid < INT_MIN)
+			error_exit(SIZE);
+		while (argv[1][0] != 0)
+			bit_sender(pid, argv[2][i++]);
+		bit_sender(pid, '\n');
+		i++;
 	}
-		
-
+	return (0);
 }
-
-// int	main(void)
-// {
-
-// 	printf("PID: %d\n", getpid());
-// 	/*	Overload signal handlers	*/
-// 	signal(SIG1, signalhandler);
-// 	signal(SIG2, signalhandler);
-// 	printf("Waiting, waiting and waiting...\n");
-// 	/*	Start an endless loop	*/
-// 	while (1)
-// 		sleep(1);
-// 	return (0);
-// }

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:35:51 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/22 10:09:44 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/22 16:09:27 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
  * 				(UNIX signal which behaviour can be mimiced in C).
 */
 
+typedef enum
+{
+	CLEAN_EXIT,
+	CLIENT_INPUT,
+	SERVER_INPUT,
+	SIZE
+}	e_type;
+
 # include <signal.h>
 # include <sys/types.h>
 # include <unistd.h>
@@ -34,6 +42,14 @@
 # define SIG1 44
 # define SIG2 45
 
-void	signalhandler(int sig);
+/* UTILS */
+void		str_to_fd(char *s, int fd);
+void		error_exit(e_type type);
+long		ft_atol(const char *str);
+
+/* CLIENT */
+void		bit_sender(int pid, char i);
+
+/* SERVER */
 
 #endif
