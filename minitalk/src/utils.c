@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:33 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/22 17:09:49 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:53:53 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,22 @@ long	ft_atol(const char *str)
 	return (n * is_neg);
 }
 
+
 void	str_to_fd(char *s, int fd)
 {
-	int	i;
+	int		i;
+	char	c;
 
 	i = 0;
 	if (!s)
 		return ;
+	c = '\0';
 	while (s[i])
-		ft_putchar_fd(s[i++], fd);
+	{
+		c = s[i];
+		write(fd, &c, 1);
+		i++;
+	}
 }
 
 /**

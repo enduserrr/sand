@@ -2,17 +2,19 @@ C_NAME		= client
 S_NAME		= server
 SRC_DIR		= src
 OBJ_DIR		= obj
+C_SRCF		= client
+S_SRCF		= server
 
-C_SRCS		= $(addprefix $(SRC_DIR)/, client.c)
-S_SRCS		= $(addprefix $(SRC_DIR)/, server.c)
-C_OBJ		= $(subst $(SRC_DIR), $(OBJ_DIR), $(C_SRCS:.c=.o)) $(SRCS:.c=.o)
-S_OBJ		=$(subst $(SRC_DIR), $(OBJ_DIR), $(S_SRCS:.c=.o))
+C_SRCS		= $(addprefix $(SRC_DIR)/, $(addsuffix .c. $(C_SRCF)))
+C_OBJ		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(C_SRCF)))
+
+S_SRCS		= $(addprefix $(SRC_DIR)/, $(addsuffix .c. $(S_SRCF)))
+S_OBJ		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(S_SRCF)))
 INC			= -I incs
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
-MAKECCH		= .make_cache
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 				@mkdir -p $(dir $@)
@@ -20,15 +22,13 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 
 all:		$(C_NAME) $(S_NAME)
 
-$(C_NAME): 	$(C_OBJ) $(MAKECCH)
+$(C_NAME): 	$(C_OBJ)
 			@$(CC) $(C_OBJ) -o $(C_NAME)
 
-$(S_NAME):	$(S_NAME) $(MAKECCH)
+$(S_NAME):	$(S_NAME)
 			@$(CC) $(S_OBJ) -o $(S_NAME)
 
-clean:		$(RM) $(C_OBJ)
-			$(RM) $(S_OBJ)
-			$(RM) -r $(OBJ_DIR)
+clean:		$(RM) -r $(OBJ_DIR)
 
 fclean:		clean
 			$(RM) $(C_NAME)

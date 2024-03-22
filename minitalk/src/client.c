@@ -6,11 +6,37 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:36:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/22 17:09:37 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/22 18:35:02 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minitalk.h"
+
+static void	error_exit(e_type type)
+{
+	if (type == CLEAN_EXIT)
+		exit(0);
+	if (type == CLIENT_INPUT)
+	{
+		ft_putstr_fd("\033[91mError: incorrect format.\033[0m\n", 2);
+		ft_putstr_fd("Try: ./client <PID> <MESSAGE>\n", 1);
+		ft_putstr_fd("(if server isn't initialised, first run the following commnd:\n", 1);
+		ft_putstr_fd("-> ./server\n", 1);
+		exit(1);
+	}
+	if (type == SERVER_INPUT)
+	{
+		ft_putstr_fd("\033[91mError: incorrect format.\033[0m\n", 2);
+		ft_putstr_fd("Try: ./server", 1);
+		exit (1);
+	}
+
+	if (type == SIZE)
+	{
+		ft_putstr_fd("\033{91mError; incorrect argument size", 2);
+		exit(1);
+	}
+}
 
 /**
  * @brief	The function 'sleep()' and 'usleep()' both hault the program
