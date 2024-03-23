@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:35:51 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/22 18:34:24 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/23 09:46:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,14 @@ typedef enum
 
 # include <signal.h>
 # include <sys/types.h>
-# include <unistd.h>
+# include <unistd.h> /*getppid, */
 # include <stdio.h>
 # include <limits.h>
 # include <stdlib.h> /*exit*/
+# include <sys/proc.h> /*PID_MAX*/
 # include "libft/incs/libft.h"
 
-# define SIG1 44
-# define SIG2 45
-
-/* UTILS */
-// void		str_to_fd(char *s, int fd);
-// void		error_exit(e_type type);
-// long		ft_atol(const char *str);
-
-/* CLIENT */
 void		bit_sender(int pid, char i);
 void		signalhandler(int sig);
-
-/* SERVER */
 
 #endif

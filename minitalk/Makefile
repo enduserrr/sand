@@ -1,16 +1,15 @@
-C_NAME		= client
-S_NAME		= server
+NAME		= client
+NAME_S		= server
+LIBFT		= incs/libft/libft.a
 SRC_DIR		= src
 OBJ_DIR		= obj
-C_SRCF		= client
-S_SRCF		= server
 
-C_SRCS		= $(addprefix $(SRC_DIR)/, $(addsuffix .c. $(C_SRCF)))
-C_OBJ		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(C_SRCF)))
+SRCS_C		= $(addprefix $(SRC_DIR)/, client.c)
+SRCS_S		= $(addprefix $(SRC_DIR)/, server.c)
+OBJ_C		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS_C:.c=.o))
+OBJ_S		= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS_S:.c=.o))
 
-S_SRCS		= $(addprefix $(SRC_DIR)/, $(addsuffix .c. $(S_SRCF)))
-S_OBJ		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(S_SRCF)))
-INC			= -I incs
+INC			= -I incs -I incs/libft/incs
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
@@ -18,21 +17,27 @@ RM			= rm -f
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 				@mkdir -p $(dir $@)
-				@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+				@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-all:		$(C_NAME) $(S_NAME)
+all:		$(NAME) $(NAME_S)
 
-$(C_NAME): 	$(C_OBJ)
-			@$(CC) $(C_OBJ) -o $(C_NAME)
+$(NAME): 	$(OBJ_C)
+			@make -C incs/libft
+			$(CC) $(OBJ_C) $(LIBFT) -o $(NAME)
 
-$(S_NAME):	$(S_NAME)
-			@$(CC) $(S_OBJ) -o $(S_NAME)
+$(NAME_S):	$(OBJ_S)
+			$(CC) $(OBJ_S) $(LIBFT) -o $(NAME_S)
 
-clean:		$(RM) -r $(OBJ_DIR)
+clean:
+			@$(RM) $(OBJ_C)
+			@$(RM) $(OBJ_S)
+			@$(RM) -r $(OBJ_DIR)
+			@make clean -C incs/libft
 
 fclean:		clean
-			$(RM) $(C_NAME)
-			$(RM) $(S_NAME)
+			$(RM) $(NAME)
+			$(RM) $(NAME_S)
+			@make fclean -C incs/libft
 
 re:			fclean all
 

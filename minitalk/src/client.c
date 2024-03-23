@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:36:40 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/22 18:35:02 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/23 13:59:23 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ static void	error_exit(e_type type)
 		exit(0);
 	if (type == CLIENT_INPUT)
 	{
-		ft_putstr_fd("\033[91mError: incorrect format.\033[0m\n", 2);
+		ft_putstr_fd("Error: incorrect format.\n", 2);
 		ft_putstr_fd("Try: ./client <PID> <MESSAGE>\n", 1);
-		ft_putstr_fd("(if server isn't initialised, first run the following commnd:\n", 1);
+		ft_putstr_fd("\nif server isn't initialised, first run the following command:\n", 1);
 		ft_putstr_fd("-> ./server\n", 1);
 		exit(1);
 	}
 	if (type == SERVER_INPUT)
 	{
-		ft_putstr_fd("\033[91mError: incorrect format.\033[0m\n", 2);
+		ft_putstr_fd("Error: incorrect format.", 2);
 		ft_putstr_fd("Try: ./server", 1);
-		exit (1);
+		exit(1);
 	}
 
 	if (type == SIZE)
 	{
-		ft_putstr_fd("\033{91mError; incorrect argument size", 2);
+		ft_putstr_fd("Error: incorrect argument size", 2);
 		exit(1);
 	}
 }
@@ -49,7 +49,7 @@ void	bit_sender(int pid, char i)
 {
 	int	bit;
 
-	bit = 0;;
+	bit = 0;
 	while (bit < 8)
 	{
 		if ((i & (0x01 << bit)) != 0)
