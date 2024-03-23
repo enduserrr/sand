@@ -23,15 +23,16 @@ all:		$(NAME) $(NAME_S)
 
 $(NAME): 	$(OBJ_C)
 			@make -C incs/libft
-			$(CC) $(OBJ_C) $(LIBFT) -o $(NAME)
+			@$(CC) $(OBJ_C) $(LIBFT) -o $(NAME)
 
 $(NAME_S):	$(OBJ_S)
 			$(CC) $(OBJ_S) $(LIBFT) -o $(NAME_S)
+			@echo "Made."
 
 clean:
-			@$(RM) $(OBJ_C)
-			@$(RM) $(OBJ_S)
-			@$(RM) -r $(OBJ_DIR)
+			$(RM) $(OBJ_C)
+			$(RM) $(OBJ_S)
+			$(RM) -r $(OBJ_DIR)
 			@make clean -C incs/libft
 
 fclean:		clean
