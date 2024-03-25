@@ -6,21 +6,23 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:35:51 by asalo             #+#    #+#             */
-/*   Updated: 2024/03/23 19:38:54 by asalo            ###   ########.fr       */
+/*   Updated: 2024/03/25 09:51:31 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MINITALK_H
+# define MINITALK_H
 
-#ifndef MINITALK 
-# define MINITALK
+# define MAX_LEN 10000
 
+/**
+ * @brief	To ensure correct printing of special chars like backslashes
+ * 			and double quotes, they must be escaped properly.
+ * 			To print a backslash \, escape it as \\ ("\\"),
+ * 			and for a double quote(") within a double-quoted string,
+ * 			you need to escape it as \" (""\"\").
+*/
 # include <signal.h>
-# include <sys/types.h>
-# include <unistd.h> /*getppid, */
-# include <stdio.h>
-# include <limits.h>
-# include <stdlib.h> /*exit*/
-# include <sys/proc.h> /*PID_MAX*/
 # include "libft/incs/libft.h"
 
 void		bit_sender(int pid, char i);

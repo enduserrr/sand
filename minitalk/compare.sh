@@ -4,7 +4,7 @@ VAR1=""
 VAR2=""
 
 if [ "$VAR1" = "$VAR2" ]; then
-    echo "Strings are equal."
+	echo "Strings are equal."
 else
-    echo "Strings are not equal."
+	echo "Strings are not equal."
 fi
