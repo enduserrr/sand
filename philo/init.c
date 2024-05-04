@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 10:05:45 by asalo             #+#    #+#             */
-/*   Updated: 2024/04/21 14:00:42 by asalo            ###   ########.fr       */
+/*   Updated: 2024/04/21 15:04:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,6 @@ static int	init_data(t_data *data, char **argv, int argc)
 
 int	init(t_data *data, char **argv, int argc)
 {
-	// static t_philo	*phils;
-
-	// data->philos = phils;/*static mem alloc inside a struct located in static mem location*/
 	if (init_data(data, argv, argc))
 		return (1);
 	// if (alloc(data))
